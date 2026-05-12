@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OVAL | إدارة العملاء والفروع الذكية</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <section id="loginScreen" class="login-screen">
+    <div class="login-card">
+      <div class="brand-logo">OV</div>
+      <h1>إدارة العملاء والفروع</h1>
+      <p>بيانات خاصة بشركة OVAL — دخول آمن محليًا</p>
+      <input id="passwordInput" type="password" placeholder="كلمة السر" autocomplete="current-password" />
+      <button id="loginBtn" class="btn primary full">دخول</button>
+      <small id="loginMsg"></small>
+    </div>
+  </section>
+
+  <main id="app" class="app hidden">
+    <aside class="side">
+      <div class="side-brand"><span>OV</span><div><b>OVAL</b><small>Smart Customers CRM</small></div></div>
+      <nav>
+        <button class="nav-btn active" data-tab="dashboard">لوحة التحليل</button>
+        <button class="nav-btn" data-tab="customers">العملاء والفروع</button>
+        <button class="nav-btn" data-tab="branches">كل الفروع</button>
+        <button class="nav-btn" data-tab="products">الأصناف والأكواد</button>
+        <button class="nav-btn" data-tab="orders">حاسبة الأوردر</button>
+        <button class="nav-btn" data-tab="registry">السجل الضريبي</button>
+        <button class="nav-btn" data-tab="quality">جودة البيانات</button>
+        <button class="nav-btn" data-tab="audit">الحركات والسلة</button>
+      </nav>
+      <div class="side-actions">
+        <button class="btn primary" onclick="openEditor()">+ إضافة فرع/عميل</button>
+        <button class="btn primary alt" onclick="openProductEditor()">+ إضافة صنف</button>
+        <button class="btn" onclick="exportCSV()">تصدير CSV</button>
+        <button class="btn" onclick="backupJSON()">نسخ احتياطي JSON</button>
+        <label class="btn file">استيراد JSON<input type="file" id="importFile" accept="application/json" hidden></label>
+        <button class="btn danger light" onclick="logout()">قفل</button>
+      </div>
+    </aside>
+
+    <section class="content">
+      <header class="topbar">
+        <div>
+          <h1>إدارة العملاء والفروع والأصناف</h1>
+          <p>كل عميل متقسم بفروعه، وكل الأصناف بالأكواد والتحليل وحاسبة أوردر سريعة.</p>
+        </div>
+        <div class="tools">
+          <button class="btn" onclick="copyManagementText()">نسخ ملخص للإدارة</button>
+          <button class="btn" onclick="window.print()">طباعة</button>
+        </div>
+      </header>
+
+      <section class="command">
+        <input id="search" placeholder="ابحث باسم العميل، الفرع، المدينة، المحافظة، الرقم الضريبي، الهاتف..." />
+        <select id="clientFilter"><option value="">كل العملاء</option></select>
+        <select id="stateFilter"><option value="">كل المحافظات</option></select>
+        <select id="qualityFilter">
+          <option value="">كل الحالات</option>
+          <option value="complete">مكتمل</option>
+          <option value="missingContact">ناقص تواصل</option>
+          <option value="missingAddress">ناقص عنوان</option>
+          <option value="missingTax">ناقص رقم ضريبي</option>
+        </select>
+        <button class="btn" onclick="clearFilters()">مسح الفلاتر</button>
+      </section>
+
+      <section id="dashboard" class="tab active">
+        <div class="kpis">
+          <div class="kpi"><span>إجمالي العملاء</span><b id="totalClients">0</b><small>بعد التجميع الذكي</small></div>
+          <div class="kpi"><span>إجمالي الفروع/السجلات</span><b id="totalBranches">0</b><small>كل الفروع بالأسماء الكاملة</small></div>
+          <div class="kpi"><span>المحافظات</span><b id="totalStates">0</b><small>توزيع جغرافي</small></div>
+          <div class="kpi"><span>بيانات تواصل</span><b id="withContact">0</b><small>هاتف / موبايل / إيميل</small></div>
+          <div class="kpi warning"><span>بيانات ناقصة</span><b id="missingData">0</b><small>محتاج مراجعة</small></div>
+          <div class="kpi product"><span>إجمالي الأصناف</span><b id="totalProductsDash">0</b><small>أكواد وباركود</small></div>
+        </div>
+        <div class="grid two">
+          <article class="panel"><div class="panel-head"><h2>أكبر العملاء حسب عدد الفروع</h2><small id="topClientsCount"></small></div><div id="topClientsChart" class="bars"></div></article>
+          <article class="panel"><div class="panel-head"><h2>توزيع المحافظات</h2><small id="statesCount"></small></div><div id="statesChart" class="bars"></div></article>
+        </div>
+        <div class="grid two">
+          <article class="panel"><div class="panel-head"><h2>تنبيهات ذكية</h2><small>أهم الملاحظات تلقائيًا</small></div><div id="smartAlerts" class="alerts"></div></article>
+          <article class="panel"><div class="panel-head"><h2>ملخص سريع للإدارة</h2><small>جاهز للنسخ</small></div><textarea id="managerSummary" readonly></textarea></article>
+        </div>
+      </section>
+
+      <section id="customers" class="tab">
+        <div class="section-title"><h2>العملاء متقسمين بفروعهم</h2><p>كل فرع ظاهر بالاسم الكامل بدون اختصار.</p></div>
+        <div id="customersList" class="customers-list"></div>
+      </section>
+
+      <section id="branches" class="tab">
+        <div class="section-title"><h2>كل الفروع</h2><p>جدول سريع للتعديل والنسخ والحذف.</p></div>
+        <div class="table-wrap"><table id="branchesTable"><thead><tr><th>العميل</th><th>اسم الفرع كامل</th><th>المحافظة</th><th>المدينة</th><th>الرقم الضريبي</th><th>تواصل</th><th>إجراءات</th></tr></thead><tbody></tbody></table></div>
+      </section>
+
+
+
+      <section id="products" class="tab">
+        <div class="section-title"><h2>الأصناف والأكواد</h2><p>كل أصناف الشركة من ملف الأكواد، مع تحليل حسب اللون والحجم والتعبئة.</p></div>
+        <section class="command sub-command">
+          <input id="productSearch" placeholder="ابحث باسم الصنف، الكود، اللون، الحجم..." />
+          <select id="productColorFilter"><option value="">كل الألوان</option></select>
+          <select id="productPackFilter"><option value="">كل الأحجام</option></select>
+          <select id="productSegmentFilter"><option value="">كل الفئات</option></select>
+          <button class="btn" onclick="clearProductFilters()">مسح فلاتر الأصناف</button>
+        </section>
+        <div class="kpis mini">
+          <div class="kpi"><span>عدد الأصناف</span><b id="totalProducts">0</b><small>كل الأكواد</small></div>
+          <div class="kpi"><span>ألوان البيض</span><b id="totalProductColors">0</b><small>أبيض / أحمر / بلدي</small></div>
+          <div class="kpi"><span>أحجام العبوات</span><b id="totalPackSizes">0</b><small>6 / 10 / 15 / 18 / 20 / 30</small></div>
+          <div class="kpi"><span>أكواد ناقصة</span><b id="missingBarcodes">0</b><small>لازم تتراجع</small></div>
+        </div>
+        <div class="grid two">
+          <article class="panel"><div class="panel-head"><h2>توزيع الأصناف حسب اللون</h2><small id="colorProductsCount"></small></div><div id="productsColorChart" class="bars"></div></article>
+          <article class="panel"><div class="panel-head"><h2>توزيع الأحجام والفئات</h2><small id="packProductsCount"></small></div><div id="productsPackChart" class="bars"></div></article>
+        </div>
+        <article class="panel">
+          <div class="panel-head"><h2>جدول الأصناف</h2><div><button class="btn small" onclick="exportProductsCSV()">تصدير الأصناف CSV</button><button class="btn small" onclick="copyProductsSummary()">نسخ ملخص الأصناف</button></div></div>
+          <div class="table-wrap"><table id="productsTable"><thead><tr><th>#</th><th>اسم الصنف الكامل</th><th>الاسم المختصر/المعتمد</th><th>الكود</th><th>اللون</th><th>الحجم</th><th>الفئة</th><th>التعبئة</th><th>إجراءات</th></tr></thead><tbody></tbody></table></div>
+        </article>
+      </section>
+
+      <section id="orders" class="tab">
+        <div class="section-title"><h2>حاسبة أوردر سريعة</h2><p>اختار العميل والفرع والصنف والكمية، والسيستم يحسب إجمالي العبوات والبيض ويطلع نص جاهز للإرسال.</p></div>
+        <div class="order-builder panel">
+          <div class="form-grid">
+            <label>العميل<select id="orderClient"></select></label>
+            <label>الفرع<select id="orderBranch"></select></label>
+            <label class="wide">الصنف<select id="orderProduct"></select></label>
+            <label>الكمية<input id="orderQty" type="number" min="1" value="1"></label>
+            <label>ملاحظة<input id="orderNote" placeholder="اختياري"></label>
+          </div>
+          <div class="modal-actions"><button class="btn primary" onclick="addOrderLine()">+ إضافة سطر</button><button class="btn" onclick="copyOrderText()">نسخ الأوردر</button><button class="btn danger light" onclick="clearOrderLines()">مسح الأوردر</button></div>
+        </div>
+        <div class="kpis mini">
+          <div class="kpi"><span>عدد السطور</span><b id="orderLinesCount">0</b><small>في الأوردر الحالي</small></div>
+          <div class="kpi"><span>إجمالي العبوات</span><b id="orderPackagesTotal">0</b><small>حسب الكمية</small></div>
+          <div class="kpi"><span>إجمالي البيض</span><b id="orderEggsTotal">0</b><small>كمية × حجم العبوة</small></div>
+        </div>
+        <article class="panel"><div class="panel-head"><h2>الأوردر الحالي</h2><small>جاهز للنسخ</small></div><div class="table-wrap"><table id="orderTable"><thead><tr><th>العميل</th><th>الفرع</th><th>الصنف</th><th>الكود</th><th>الكمية</th><th>البيض</th><th>ملاحظة</th><th>حذف</th></tr></thead><tbody></tbody></table></div><textarea id="orderText" readonly></textarea></article>
+      </section>
+
+      <section id="registry" class="tab">
+        <div class="section-title"><h2>السجل الضريبي للعملاء</h2><p>الأسماء والأرقام الضريبية من ملف السجل الضريبي المرفوع.</p></div>
+        <div id="registryList" class="registry-grid"></div>
+      </section>
+
+      <section id="quality" class="tab">
+        <div class="section-title"><h2>تحليل جودة البيانات</h2><p>اكتشاف الناقص والمتكرر تلقائيًا.</p></div>
+        <div class="grid three" id="qualityCards"></div>
+        <article class="panel"><div class="panel-head"><h2>السجلات التي تحتاج مراجعة</h2><small id="qualityCount"></small></div><div id="qualityList" class="issue-list"></div></article>
+      </section>
+
+      <section id="audit" class="tab">
+        <div class="grid two">
+          <article class="panel"><div class="panel-head"><h2>سجل الحركات</h2><button class="btn small" onclick="clearAudit()">مسح السجل</button></div><div id="auditList" class="log-list"></div></article>
+          <article class="panel"><div class="panel-head"><h2>سلة المحذوفات</h2><button class="btn small danger" onclick="emptyTrash()">تفريغ</button></div><div id="trashList" class="trash-list"></div></article>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <div id="editor" class="modal hidden">
+    <form class="modal-card" onsubmit="saveEditor(event)">
+      <div class="modal-head"><h2 id="editorTitle">إضافة / تعديل</h2><button type="button" onclick="closeEditor()">×</button></div>
+      <input type="hidden" id="editId">
+      <div class="form-grid">
+        <label>اسم العميل<input id="client" required></label>
+        <label>اسم الفرع كامل<input id="branch" required></label>
+        <label>الرقم الضريبي<input id="taxId"></label>
+        <label>شروط الدفع<input id="paymentTerms"></label>
+        <label>المحافظة<input id="state"></label>
+        <label>المدينة<input id="city"></label>
+        <label>العنوان<input id="street"></label>
+        <label>هاتف<input id="phone"></label>
+        <label>موبايل<input id="mobile"></label>
+        <label>إيميل<input id="email" type="email"></label>
+        <label>موقع / لوكيشن<input id="website"></label>
+        <label class="wide">ملاحظات<textarea id="notes"></textarea></label>
+      </div>
+      <div class="modal-actions"><button class="btn primary" type="submit">حفظ</button><button class="btn" type="button" onclick="closeEditor()">إلغاء</button></div>
+    </form>
+  </div>
+
+
+
+  <div id="productEditor" class="modal hidden">
+    <form class="modal-card" onsubmit="saveProductEditor(event)">
+      <div class="modal-head"><h2 id="productEditorTitle">إضافة / تعديل صنف</h2><button type="button" onclick="closeProductEditor()">×</button></div>
+      <input type="hidden" id="productEditId">
+      <div class="form-grid">
+        <label>رقم الصنف<input id="productNo" type="number"></label>
+        <label>اسم الصنف الكامل<input id="productName" required></label>
+        <label class="wide">الاسم المختصر/المعتمد<input id="productDisplayName"></label>
+        <label>الكود / الباركود<input id="productBarcode"></label>
+        <label>اللون<select id="productColor"><option>أبيض</option><option>أحمر</option><option>بلدي</option><option></option></select></label>
+        <label>حجم العبوة<input id="productPackSize" placeholder="6 / 10 / 15 / 18 / 20 / 30"></label>
+        <label>الفئة<input id="productSegment" placeholder="Big Egg / سمارت / فاليو / فنادق"></label>
+        <label>التعبئة<input id="productPackaging" placeholder="عبوة / كرتون / بلاستيك"></label>
+        <label class="wide">ملاحظات<textarea id="productNotes"></textarea></label>
+      </div>
+      <div class="modal-actions"><button class="btn primary" type="submit">حفظ الصنف</button><button class="btn" type="button" onclick="closeProductEditor()">إلغاء</button></div>
+    </form>
+  </div>
+
+  <div id="toast"></div>
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

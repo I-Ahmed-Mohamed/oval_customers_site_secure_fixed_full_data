@@ -1,0 +1,164 @@
+const PASSWORD = 'oval1';
+const STORAGE_KEY = 'oval.smart.customers.v7';
+const AUDIT_KEY = 'oval.smart.audit.v7';
+const TRASH_KEY = 'oval.smart.trash.v7';
+const SESSION_KEY = 'oval.smart.session.v7';
+const PRODUCT_STORAGE_KEY = 'oval.smart.products.v1';
+const SESSION_MS = 1000 * 60 * 60 * 8;
+let records = [];
+let filtered = [];
+let editingId = null;
+let products = [];
+let filteredProducts = [];
+let editingProductId = null;
+let orderLines = [];
+const $ = id => document.getElementById(id);
+const norm = v => String(v || '').replace(/\s+/g,' ').trim();
+const lower = v => norm(v).toLowerCase();
+const cleanArabic = v => lower(v).replace(/[أإآا]/g,'ا').replace(/ة/g,'ه').replace(/ى/g,'ي').replace(/ئ/g,'ي').replace(/ؤ/g,'و').replace(/[^\u0600-\u06FFa-z0-9 ]/g,' ');
+const unique = arr => [...new Set(arr.map(norm).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'ar'));
+function esc(s){return String(s||'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
+function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800)}
+function encodeSafe(text){return btoa(unescape(encodeURIComponent(text)))}
+function decodeSafe(text){return decodeURIComponent(escape(atob(text)))}
+function xorText(text,key){return [...text].map((ch,i)=>String.fromCharCode(ch.charCodeAt(0)^key.charCodeAt(i%key.length))).join('')}
+function encrypt(data){return encodeSafe(xorText(JSON.stringify(data),PASSWORD))}
+function decrypt(text){return JSON.parse(xorText(decodeSafe(text),PASSWORD))}
+function readEnc(key,fallback){try{const v=localStorage.getItem(key);return v?decrypt(v):fallback}catch(e){return fallback}}
+function writeEnc(key,data){localStorage.setItem(key,encrypt(data))}
+function initialRecords(){return (window.INITIAL_CUSTOMERS||[]).map((r,i)=>normalizeRecord({...r,id:r.id||`rec-${Date.now()}-${i}`}));}
+function normalizeRecord(r){r.client=norm(r.client||r.clientOriginal);r.branch=norm(r.branchFullName||r.branch||r.client);r.branchFullName=r.branch;r.taxId=norm(r.taxId);r.state=norm(r.state);r.city=norm(r.city);r.street=norm(r.street);r.phone=norm(r.phone);r.mobile=norm(r.mobile);r.email=norm(r.email);r.website=norm(r.website);r.paymentTerms=norm(r.paymentTerms);r.notes=norm(r.notes);return r;}
+function load(){let saved=readEnc(STORAGE_KEY,null); if(Array.isArray(saved)&&saved.length){records=saved.map(normalizeRecord)} else {records=initialRecords(); writeEnc(STORAGE_KEY,records)} }
+function save(){writeEnc(STORAGE_KEY,records)}
+function audit(){return readEnc(AUDIT_KEY,[])} function saveAudit(a){writeEnc(AUDIT_KEY,a.slice(0,500))}
+function trash(){return readEnc(TRASH_KEY,[])} function saveTrash(t){writeEnc(TRASH_KEY,t)}
+function addLog(action,before,after){const a=audit();a.unshift({id:crypto.randomUUID(),at:new Date().toISOString(),action,before:snap(before),after:snap(after)});saveAudit(a);renderAudit()}
+function snap(r){if(!r)return null;return {client:r.client,branch:r.branch,state:r.state,city:r.city,taxId:r.taxId,mobile:r.mobile,email:r.email}}
+const ALIASES = [
+  ['المنصوره','وكالة المنصورة'],['وكاله المنصوره','وكالة المنصورة'],['وكالة المنصورة','وكالة المنصورة'],
+  ['بنده','بندة'],['بندة','بندة'],['panda','بندة'],
+  ['اوسكار','أوسكار جراند ستورز'],['جراند','أوسكار جراند ستورز'],
+  ['سبينيس','سبينيس'],['spinneys','سبينيس'],
+  ['اللولو','اللولو هايبر ماركت'],['lulu','اللولو هايبر ماركت'],
+  ['الفار','الفار'],['زهران','زهران'],['اولاد رجب','أولاد رجب'],
+  ['كازيون','أوكازيون'],['اوكازيون','أوكازيون'],
+  ['ماف','كارفور'],['كارفور','كارفور'],['carrefour','كارفور'],
+  ['سوق دوت كوم','أمازون / نون'],['امازون','أمازون'],['amazon','أمازون'],['نون','نون'],
+  ['رع ماركت','جيان ماركت / رع'],['جيان','جيان ماركت / رع'],
+  ['جودز','جودز مارت'],['سوبر سنتر','سوبر سنتر'],['سانت ريجيس العاصمة','فندق سانت ريجيس العاصمة'],['ماريوت','فندق ماريوت مينا هاوس'],
+  ['هيلتون','فندق هيلتون هليوبلس'],['رايدسون','فندق رايدسون بلو شيراتون'],['بان كيكس','بان كيكس فودز'],['بيم','بيم'],['سوان','سوان ماركت'],
+  ['تمار','شركة تمار هوم'],['جاما','جاما للإنشاءات والطرق'],['meimhardt','MEIMHARDT'],['الهندسية','الشركة الهندسية للإنشاء والتعمير'],['تالنت','شركة تالنت الهندسية'],['روشن','شركة روشن']
+];
+function officialName(name){const c=cleanArabic(name); for(const [needle,off] of ALIASES){if(c.includes(cleanArabic(needle)))return off} return norm(name)||'عميل غير محدد'}
+function registryTax(official){const reg=(window.TAX_REGISTRY||[]).find(x=>cleanArabic(official).includes(cleanArabic(x.name))||cleanArabic(x.name).includes(cleanArabic(official))); return reg?.taxId||''}
+function taxFor(r){return r.taxId||registryTax(officialName(r.client))||''}
+function hasContact(r){return !!(norm(r.mobile)||norm(r.phone)||norm(r.email))}
+function hasAddress(r){return !!(norm(r.street)||norm(r.city)||norm(r.state))}
+function isComplete(r){return hasContact(r)&&hasAddress(r)&&!!taxFor(r)}
+function score(r){return ['client','branch','taxId','state','city','street','phone','mobile','email'].reduce((n,k)=>n+(norm(k==='taxId'?taxFor(r):r[k])?1:0),0)}
+function allGroups(list=filtered){return list.reduce((acc,r)=>{const key=officialName(r.client);(acc[key] ||= []).push(r);return acc},{})}
+function login(){if($('passwordInput').value===PASSWORD){sessionStorage.setItem(SESSION_KEY,String(Date.now()+SESSION_MS));$('loginScreen').classList.add('hidden');$('app').classList.remove('hidden');initApp()}else{$('loginMsg').textContent='كلمة السر غير صحيحة'}}
+function checkSession(){return Number(sessionStorage.getItem(SESSION_KEY)||0)>Date.now()}
+function logout(){sessionStorage.removeItem(SESSION_KEY);location.reload()}
+function setupProtection(){document.addEventListener('contextmenu',e=>e.preventDefault());document.addEventListener('keydown',e=>{const k=e.key.toLowerCase();if(e.key==='F12'||(e.ctrlKey&&e.shiftKey&&['i','j','c'].includes(k))||(e.ctrlKey&&['u','s'].includes(k))){e.preventDefault();toast('البيانات خاصة ومحمية بشكل ردعي')}})}
+function initApp(){load();loadProducts();bindEvents();applyFilters();applyProductFilters();setupOrderBuilder();renderRegistry();renderAudit();renderTrash();}
+function bindEvents(){['search','clientFilter','stateFilter','qualityFilter'].forEach(id=>$(id).addEventListener('input',applyFilters));$('importFile').addEventListener('change',importJSON);document.querySelectorAll('.nav-btn').forEach(b=>b.addEventListener('click',()=>switchTab(b.dataset.tab)));}
+function switchTab(id){document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.id===id));}
+function applyFilters(){const q=lower($('search')?.value||'');const cf=$('clientFilter')?.value||'';const sf=$('stateFilter')?.value||'';const qf=$('qualityFilter')?.value||'';filtered=records.filter(r=>{const blob=[r.client,r.branch,r.street,r.city,r.state,r.phone,r.mobile,r.email,taxFor(r),r.paymentTerms,r.notes,officialName(r.client)].join(' ').toLowerCase();if(q&&!blob.includes(q))return false;if(cf&&officialName(r.client)!==cf)return false;if(sf&&r.state!==sf)return false;if(qf==='complete'&&!isComplete(r))return false;if(qf==='missingContact'&&hasContact(r))return false;if(qf==='missingAddress'&&hasAddress(r))return false;if(qf==='missingTax'&&taxFor(r))return false;return true});renderAll();}
+function renderAll(){renderFilters();renderDashboard();renderCustomers();renderBranches();renderQuality();}
+function renderFilters(){const clients=unique(records.map(r=>officialName(r.client)));const states=unique(records.map(r=>r.state));const curC=$('clientFilter').value,curS=$('stateFilter').value;$('clientFilter').innerHTML='<option value="">كل العملاء</option>'+clients.map(x=>`<option ${x===curC?'selected':''}>${esc(x)}</option>`).join('');$('stateFilter').innerHTML='<option value="">كل المحافظات</option>'+states.map(x=>`<option ${x===curS?'selected':''}>${esc(x)}</option>`).join('');}
+function renderDashboard(){const groups=allGroups(records);const fg=allGroups(filtered);const clients=Object.keys(groups);const states=unique(records.map(r=>r.state));$('totalClients').textContent=clients.length;$('totalBranches').textContent=records.length;$('totalStates').textContent=states.length;$('withContact').textContent=records.filter(hasContact).length;$('missingData').textContent=records.filter(r=>!isComplete(r)).length;if($('totalProductsDash'))$('totalProductsDash').textContent=products.length;renderBars('topClientsChart',Object.entries(fg).map(([name,items])=>[name,items.length]).sort((a,b)=>b[1]-a[1]).slice(0,8));$('topClientsCount').textContent=`${Object.keys(fg).length} عميل في العرض`;const stateCounts={};filtered.forEach(r=>{stateCounts[r.state||'غير محدد']=(stateCounts[r.state||'غير محدد']||0)+1});renderBars('statesChart',Object.entries(stateCounts).sort((a,b)=>b[1]-a[1]).slice(0,8));$('statesCount').textContent=`${Object.keys(stateCounts).length} محافظة/منطقة`;renderAlerts();renderSummary();}
+function renderBars(id,rows){const max=Math.max(1,...rows.map(r=>r[1]));$(id).innerHTML=rows.map(([name,n])=>`<div class="bar-row"><div class="bar-name">${esc(name)}</div><div class="bar-track"><div class="bar-fill" style="width:${Math.max(6,n/max*100)}%"></div></div><div class="bar-num">${n}</div></div>`).join('')||'<div class="empty">لا توجد بيانات</div>';}
+function renderAlerts(){const missingContact=records.filter(r=>!hasContact(r)).length, missingAddress=records.filter(r=>!hasAddress(r)).length, missingTax=records.filter(r=>!taxFor(r)).length;const biggest=Object.entries(allGroups(records)).sort((a,b)=>b[1].length-a[1].length)[0];$('smartAlerts').innerHTML=[`أكبر عميل في عدد الفروع: ${biggest?biggest[0]+' ('+biggest[1].length+')':'لا يوجد'}`,`سجلات ناقصة بيانات تواصل: ${missingContact}`,`سجلات ناقصة عنوان: ${missingAddress}`,`سجلات ناقصة رقم ضريبي: ${missingTax}`,`تم ربط الأرقام الضريبية المتاحة من سجل العملاء تلقائيًا`].map(x=>`<div class="alert">${esc(x)}</div>`).join('');}
+function renderSummary(){const g=allGroups(records);const top=Object.entries(g).sort((a,b)=>b[1].length-a[1].length).slice(0,10).map(([n,it])=>`- ${n}: ${it.length} فرع/سجل`).join('\n');$('managerSummary').value=`ملخص العملاء والفروع\nإجمالي العملاء: ${Object.keys(g).length}\nإجمالي الفروع/السجلات: ${records.length}\nإجمالي المحافظات/المناطق: ${unique(records.map(r=>r.state)).length}\nسجلات بها بيانات تواصل: ${records.filter(hasContact).length}\nسجلات تحتاج مراجعة: ${records.filter(r=>!isComplete(r)).length}\n\nأكبر العملاء حسب عدد الفروع:\n${top}`;}
+function renderCustomers(){const g=allGroups(filtered);$('customersList').innerHTML=Object.entries(g).sort((a,b)=>a[0].localeCompare(b[0],'ar')).map(([client,items])=>{const contacts=items.filter(hasContact).length, complete=items.filter(isComplete).length, tax=registryTax(client)||taxFor(items[0])||'غير مسجل';return `<article class="client-card"><div class="client-head"><div class="client-title"><b>${esc(client)}</b><small>${items.length} فرع/سجل · مكتمل ${complete} · بيانات تواصل ${contacts} · رقم ضريبي: ${esc(tax)}</small></div><div class="client-actions"><button class="btn small" onclick="copyClient('${escAttr(client)}')">نسخ العميل</button><button class="btn small" onclick="openEditor(null,'${escAttr(client)}')">+ إضافة فرع</button></div></div><div class="branch-grid">${items.map(branchCard).join('')}</div></article>`}).join('')||'<div class="panel">لا توجد بيانات</div>';}
+function branchCard(r){return `<div class="branch-card"><h3>${esc(r.branch)}</h3><div class="meta"><span>العميل الأصلي: ${esc(r.client)}</span><span>المحافظة: ${esc(r.state||'غير محدد')} · المدينة: ${esc(r.city||'غير محدد')}</span><span>الرقم الضريبي: ${esc(taxFor(r)||'غير مسجل')}</span><span>التواصل: ${esc([r.mobile,r.phone,r.email].filter(Boolean).join(' | ')||'غير مسجل')}</span><span>العنوان: ${esc([r.street,r.city,r.state].filter(Boolean).join(' - ')||'غير مسجل')}</span></div><div class="card-actions"><button class="btn small" onclick="copyRecord('${r.id}')">نسخ</button><button class="btn small" onclick="openEditor('${r.id}')">تعديل</button><button class="btn small danger" onclick="deleteRecord('${r.id}')">حذف</button></div></div>`}
+function renderBranches(){const tb=$('branchesTable').querySelector('tbody');tb.innerHTML=filtered.map(r=>`<tr><td>${esc(officialName(r.client))}<br><small>${esc(r.client)}</small></td><td><b>${esc(r.branch)}</b><br><small>${esc(r.street||'')}</small></td><td>${esc(r.state)}</td><td>${esc(r.city)}</td><td>${esc(taxFor(r)||'غير مسجل')}</td><td>${esc([r.mobile,r.phone,r.email].filter(Boolean).join(' | ')||'غير مسجل')}</td><td><button class="btn small" onclick="copyRecord('${r.id}')">نسخ</button> <button class="btn small" onclick="openEditor('${r.id}')">تعديل</button> <button class="btn small danger" onclick="deleteRecord('${r.id}')">حذف</button></td></tr>`).join('')||'<tr><td colspan="7">لا توجد بيانات</td></tr>';}
+function renderRegistry(){const list=window.TAX_REGISTRY||[];$('registryList').innerHTML=list.map(x=>`<div class="registry-item"><b>${esc(x.name)}</b><span>${esc(x.taxId)}</span></div>`).join('');}
+function renderQuality(){const missingContact=records.filter(r=>!hasContact(r));const missingAddress=records.filter(r=>!hasAddress(r));const missingTax=records.filter(r=>!taxFor(r));$('qualityCards').innerHTML=[['ناقص تواصل',missingContact.length],['ناقص عنوان',missingAddress.length],['ناقص رقم ضريبي',missingTax.length]].map(([n,c])=>`<div class="quality-card"><span>${n}</span><b>${c}</b></div>`).join('');const issues=records.filter(r=>!isComplete(r)).sort((a,b)=>score(a)-score(b)).slice(0,120);$('qualityCount').textContent=`${issues.length} من أصل ${records.filter(r=>!isComplete(r)).length}`;$('qualityList').innerHTML=issues.map(r=>`<div class="issue"><b>${esc(officialName(r.client))} - ${esc(r.branch)}</b><small>${!hasContact(r)?'ناقص تواصل · ':''}${!hasAddress(r)?'ناقص عنوان · ':''}${!taxFor(r)?'ناقص رقم ضريبي':''}</small><div class="card-actions"><button class="btn small" onclick="openEditor('${r.id}')">تعديل</button><button class="btn small" onclick="copyRecord('${r.id}')">نسخ</button></div></div>`).join('')||'<div class="empty">كل البيانات جيدة</div>';}
+function escAttr(s){return encodeURIComponent(String(s||''))}
+function openEditor(id=null,clientName=''){editingId=id;const r=id?records.find(x=>x.id===id):null;$('editorTitle').textContent=id?'تعديل فرع/عميل':'إضافة فرع/عميل';$('editId').value=id||'';['client','branch','taxId','paymentTerms','state','city','street','phone','mobile','email','website','notes'].forEach(k=>$(k).value=r?(k==='taxId'?taxFor(r):r[k]||''):'');if(!r&&clientName){$('client').value=decodeURIComponent(clientName);$('taxId').value=registryTax($('client').value)}$('editor').classList.remove('hidden')}
+function closeEditor(){$('editor').classList.add('hidden')}
+function saveEditor(e){e.preventDefault();const payload={id:editingId||crypto.randomUUID(),client:norm($('client').value),branch:norm($('branch').value),branchFullName:norm($('branch').value),taxId:norm($('taxId').value),paymentTerms:norm($('paymentTerms').value),state:norm($('state').value),city:norm($('city').value),street:norm($('street').value),phone:norm($('phone').value),mobile:norm($('mobile').value),email:norm($('email').value),website:norm($('website').value),notes:norm($('notes').value),isBranch:true,sourceSheet:'manual'};if(!payload.taxId)payload.taxId=registryTax(officialName(payload.client));if(editingId){const i=records.findIndex(x=>x.id===editingId);const old={...records[i]};records[i]=normalizeRecord({...records[i],...payload});addLog('تعديل',old,records[i])}else{records.unshift(normalizeRecord(payload));addLog('إضافة',null,payload)}save();closeEditor();applyFilters();toast('تم الحفظ')}
+function copyRecord(id){const r=records.find(x=>x.id===id);if(!r)return;const txt=`العميل: ${officialName(r.client)}\nاسم الفرع كامل: ${r.branch}\nالرقم الضريبي: ${taxFor(r)||''}\nالمحافظة: ${r.state||''}\nالمدينة: ${r.city||''}\nالعنوان: ${[r.street,r.city,r.state].filter(Boolean).join(' - ')}\nالتواصل: ${[r.mobile,r.phone,r.email].filter(Boolean).join(' | ')}`;navigator.clipboard.writeText(txt);addLog('نسخ فرع',r,r);toast('تم النسخ')}
+function copyClient(encoded){const client=decodeURIComponent(encoded);const items=records.filter(r=>officialName(r.client)===client);const txt=`${client}\nإجمالي الفروع/السجلات: ${items.length}\nالرقم الضريبي: ${registryTax(client)||taxFor(items[0])||''}\n\n`+items.map((r,i)=>`${i+1}. ${r.branch} - ${[r.city,r.state].filter(Boolean).join(' / ')}`).join('\n');navigator.clipboard.writeText(txt);addLog('نسخ عميل',null,{client,branch:String(items.length)});toast('تم نسخ بيانات العميل')}
+function deleteRecord(id){const r=records.find(x=>x.id===id);if(!r)return;const phrase=prompt(`للحذف اكتب: حذف\n${r.client} - ${r.branch}`);if(phrase!=='حذف')return;records=records.filter(x=>x.id!==id);const t=trash();t.unshift({...r,deletedAt:new Date().toISOString()});saveTrash(t);save();addLog('حذف',r,null);applyFilters();renderTrash();toast('تم النقل لسلة المحذوفات')}
+function renderAudit(){const a=audit();$('auditList').innerHTML=a.map(x=>`<div class="log-item"><b>${esc(x.action)}</b><small>${new Date(x.at).toLocaleString('ar-EG')}</small><div>${esc([x.before?.client,x.before?.branch].filter(Boolean).join(' - ')||'—')} ⟵ ${esc([x.after?.client,x.after?.branch].filter(Boolean).join(' - ')||'—')}</div></div>`).join('')||'<div class="empty">لا توجد حركات</div>'}
+function renderTrash(){const t=trash();$('trashList').innerHTML=t.map(r=>`<div class="trash-item"><b>${esc(r.client)} - ${esc(r.branch)}</b><small>${new Date(r.deletedAt).toLocaleString('ar-EG')}</small><div class="card-actions"><button class="btn small" onclick="restoreRecord('${r.id}')">استرجاع</button><button class="btn small danger" onclick="purgeRecord('${r.id}')">حذف نهائي</button></div></div>`).join('')||'<div class="empty">السلة فارغة</div>'}
+function restoreRecord(id){const t=trash();const r=t.find(x=>x.id===id);if(!r)return;records.unshift(normalizeRecord(r));saveTrash(t.filter(x=>x.id!==id));save();addLog('استرجاع',null,r);applyFilters();renderTrash();toast('تم الاسترجاع')}
+function purgeRecord(id){if(prompt('للحذف النهائي اكتب: نهائي')!=='نهائي')return;saveTrash(trash().filter(x=>x.id!==id));renderTrash();toast('تم الحذف النهائي')}
+function clearAudit(){if(prompt('لمسح السجل اكتب: مسح')==='مسح'){saveAudit([]);renderAudit()}}
+function emptyTrash(){if(prompt('لتفريغ السلة اكتب: تفريغ')==='تفريغ'){saveTrash([]);renderTrash()}}
+function exportCSV(){const headers=['العميل الرسمي','اسم العميل الأصلي','اسم الفرع الكامل','الرقم الضريبي','المحافظة','المدينة','العنوان','هاتف','موبايل','إيميل','شروط الدفع'];const rows=filtered.map(r=>[officialName(r.client),r.client,r.branch,taxFor(r),r.state,r.city,r.street,r.phone,r.mobile,r.email,r.paymentTerms]);const csv=[headers,...rows].map(row=>row.map(v=>'"'+String(v||'').replaceAll('"','""')+'"').join(',')).join('\n');downloadBlob('\ufeff'+csv,'oval-customers-branches.csv','text/csv;charset=utf-8');addLog('تصدير CSV',null,{client:'CSV',branch:String(filtered.length)})}
+function backupJSON(){downloadBlob(JSON.stringify({records,products,audit:audit(),trash:trash(),taxRegistry:window.TAX_REGISTRY,createdAt:new Date().toISOString()},null,2),'oval-customers-backup.json','application/json');addLog('نسخ احتياطي',null,{client:'backup',branch:String(records.length)})}
+function importJSON(e){const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=()=>{try{const obj=JSON.parse(reader.result);const imported=Array.isArray(obj)?obj:obj.records;if(!Array.isArray(imported))throw new Error('bad');if(prompt(`هيتم استيراد ${imported.length} سجل. اكتب: استيراد`) !== 'استيراد')return;records=imported.map(normalizeRecord); if(obj.products&&Array.isArray(obj.products)){products=obj.products.map(normalizeProduct);saveProducts();} save();addLog('استيراد JSON',null,{client:'import',branch:String(records.length)});applyFilters();toast('تم الاستيراد')}catch(err){alert('ملف غير صحيح')}};reader.readAsText(file);e.target.value=''}
+function downloadBlob(content,name,type){const b=new Blob([content],{type});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;a.click();URL.revokeObjectURL(a.href)}
+function clearFilters(){$('search').value='';$('clientFilter').value='';$('stateFilter').value='';$('qualityFilter').value='';applyFilters()}
+function copyManagementText(){navigator.clipboard.writeText($('managerSummary').value);toast('تم نسخ الملخص')}
+window.addEventListener('DOMContentLoaded',()=>{setupProtection();$('loginBtn').addEventListener('click',login);$('passwordInput').addEventListener('keydown',e=>{if(e.key==='Enter')login()});if(checkSession()){ $('loginScreen').classList.add('hidden');$('app').classList.remove('hidden');initApp();}});
+
+
+/* ================= Products + Order Builder ================= */
+function normalizeProduct(p){
+  p.id=p.id||crypto.randomUUID();
+  p.no=Number(p.no||0);
+  p.name=norm(p.name||p.displayName);
+  p.displayName=norm(p.displayName||p.name);
+  p.barcode=norm(p.barcode);
+  p.color=norm(p.color);
+  p.packSize=norm(p.packSize);
+  p.segment=norm(p.segment||'عام');
+  p.packaging=norm(p.packaging||'عبوة');
+  p.notes=norm(p.notes);
+  return p;
+}
+function loadProducts(){let saved=readEnc(PRODUCT_STORAGE_KEY,null); if(Array.isArray(saved)&&saved.length){products=saved.map(normalizeProduct)} else {products=(window.INITIAL_PRODUCTS||[]).map(normalizeProduct); saveProducts();}}
+function saveProducts(){writeEnc(PRODUCT_STORAGE_KEY,products)}
+function productBadge(color){const cls=color==='أحمر'?'red':color==='بلدي'?'balady':color==='أبيض'?'':'gray';return `<span class="badge ${cls}">${esc(color||'غير محدد')}</span>`}
+function applyProductFilters(){
+  if(!$('productSearch')) return;
+  const q=lower($('productSearch').value||''), c=$('productColorFilter').value||'', p=$('productPackFilter').value||'', s=$('productSegmentFilter').value||'';
+  filteredProducts=products.filter(x=>{const blob=[x.name,x.displayName,x.barcode,x.color,x.packSize,x.segment,x.packaging,x.notes].join(' ').toLowerCase(); if(q&&!blob.includes(q))return false; if(c&&x.color!==c)return false; if(p&&x.packSize!==p)return false; if(s&&x.segment!==s)return false; return true;});
+  renderProductFilters();renderProducts();renderOrderProductOptions();
+}
+function renderProductFilters(){
+  const colors=unique(products.map(p=>p.color)), packs=unique(products.map(p=>p.packSize)), segs=unique(products.map(p=>p.segment));
+  const cc=$('productColorFilter').value, pp=$('productPackFilter').value, ss=$('productSegmentFilter').value;
+  $('productColorFilter').innerHTML='<option value="">كل الألوان</option>'+colors.map(x=>`<option ${x===cc?'selected':''}>${esc(x)}</option>`).join('');
+  $('productPackFilter').innerHTML='<option value="">كل الأحجام</option>'+packs.map(x=>`<option ${x===pp?'selected':''}>${esc(x)}</option>`).join('');
+  $('productSegmentFilter').innerHTML='<option value="">كل الفئات</option>'+segs.map(x=>`<option ${x===ss?'selected':''}>${esc(x)}</option>`).join('');
+}
+function renderProducts(){
+  if(!$('productsTable')) return;
+  $('totalProducts').textContent=products.length;
+  $('totalProductColors').textContent=unique(products.map(p=>p.color)).length;
+  $('totalPackSizes').textContent=unique(products.map(p=>p.packSize)).length;
+  $('missingBarcodes').textContent=products.filter(p=>!p.barcode).length;
+  const colorCounts={};products.forEach(p=>{colorCounts[p.color||'غير محدد']=(colorCounts[p.color||'غير محدد']||0)+1});
+  const packCounts={};products.forEach(p=>{packCounts[(p.packSize||'غير محدد')+' / '+(p.segment||'عام')]=(packCounts[(p.packSize||'غير محدد')+' / '+(p.segment||'عام')]||0)+1});
+  renderBars('productsColorChart',Object.entries(colorCounts).sort((a,b)=>b[1]-a[1]));$('colorProductsCount').textContent=`${Object.keys(colorCounts).length} لون`;
+  renderBars('productsPackChart',Object.entries(packCounts).sort((a,b)=>b[1]-a[1]).slice(0,10));$('packProductsCount').textContent=`${Object.keys(packCounts).length} حجم/فئة`;
+  $('productsTable').querySelector('tbody').innerHTML=filteredProducts.sort((a,b)=>(a.no||999)-(b.no||999)).map(p=>`<tr><td>${p.no||''}</td><td><b>${esc(p.name)}</b></td><td>${esc(p.displayName)}</td><td class="code-cell">${esc(p.barcode)}</td><td>${productBadge(p.color)}</td><td>${esc(p.packSize)}</td><td>${esc(p.segment)}</td><td>${esc(p.packaging)}</td><td><div class="action-stack"><button class="btn small" onclick="copyProduct('${p.id}')">نسخ</button><button class="btn small" onclick="openProductEditor('${p.id}')">تعديل</button><button class="btn small danger" onclick="deleteProduct('${p.id}')">حذف</button></div></td></tr>`).join('') || '<tr><td colspan="9">لا توجد أصناف</td></tr>';
+}
+function bindProductEvents(){['productSearch','productColorFilter','productPackFilter','productSegmentFilter'].forEach(id=>$(id)&&$(id).addEventListener('input',applyProductFilters));}
+const oldBindEvents = bindEvents;
+bindEvents = function(){oldBindEvents(); bindProductEvents(); if($('orderClient')) $('orderClient').addEventListener('change',renderOrderBranches);};
+function clearProductFilters(){$('productSearch').value='';$('productColorFilter').value='';$('productPackFilter').value='';$('productSegmentFilter').value='';applyProductFilters();}
+function openProductEditor(id=null){editingProductId=id;const p=id?products.find(x=>x.id===id):null;$('productEditorTitle').textContent=id?'تعديل صنف':'إضافة صنف';$('productEditId').value=id||'';['No','Name','DisplayName','Barcode','Color','PackSize','Segment','Packaging','Notes'].forEach(k=>{const el=$('product'+k); if(!el)return; const key=k.charAt(0).toLowerCase()+k.slice(1); el.value=p?(p[key]||''):''});$('productEditor').classList.remove('hidden')}
+function closeProductEditor(){$('productEditor').classList.add('hidden')}
+function saveProductEditor(e){e.preventDefault();const payload={id:editingProductId||crypto.randomUUID(),no:Number($('productNo').value||products.length+1),name:norm($('productName').value),displayName:norm($('productDisplayName').value)||norm($('productName').value),barcode:norm($('productBarcode').value),color:norm($('productColor').value),packSize:norm($('productPackSize').value),segment:norm($('productSegment').value),packaging:norm($('productPackaging').value),notes:norm($('productNotes').value)}; if(editingProductId){const i=products.findIndex(x=>x.id===editingProductId);products[i]=normalizeProduct({...products[i],...payload});addLog('تعديل صنف',null,{client:'صنف',branch:payload.name})}else{products.unshift(normalizeProduct(payload));addLog('إضافة صنف',null,{client:'صنف',branch:payload.name})} saveProducts();closeProductEditor();applyProductFilters();toast('تم حفظ الصنف')}
+function copyProduct(id){const p=products.find(x=>x.id===id); if(!p)return; const txt=`الصنف: ${p.name}\nالاسم المعتمد: ${p.displayName}\nالكود: ${p.barcode}\nاللون: ${p.color}\nالحجم: ${p.packSize}\nالفئة: ${p.segment}\nالتعبئة: ${p.packaging}`;navigator.clipboard.writeText(txt);addLog('نسخ صنف',null,{client:'صنف',branch:p.name});toast('تم نسخ الصنف')}
+function deleteProduct(id){const p=products.find(x=>x.id===id); if(!p)return; if(prompt(`لحذف الصنف اكتب: حذف\n${p.name}`)!=='حذف')return; products=products.filter(x=>x.id!==id); saveProducts(); addLog('حذف صنف',p,null); applyProductFilters();toast('تم حذف الصنف')}
+function exportProductsCSV(){const headers=['رقم','اسم الصنف الكامل','الاسم المعتمد','الكود','اللون','الحجم','الفئة','التعبئة','ملاحظات'];const rows=filteredProducts.map(p=>[p.no,p.name,p.displayName,p.barcode,p.color,p.packSize,p.segment,p.packaging,p.notes]);const csv=[headers,...rows].map(r=>r.map(v=>'"'+String(v||'').replaceAll('"','""')+'"').join(',')).join('\n');downloadBlob('\ufeff'+csv,'oval-products-codes.csv','text/csv;charset=utf-8');addLog('تصدير أصناف CSV',null,{client:'products',branch:String(filteredProducts.length)})}
+function copyProductsSummary(){const byColor={};products.forEach(p=>byColor[p.color||'غير محدد']=(byColor[p.color||'غير محدد']||0)+1);const txt=`ملخص أصناف OVAL\nإجمالي الأصناف: ${products.length}\nالألوان: ${Object.entries(byColor).map(([k,v])=>k+': '+v).join(' | ')}\nالأحجام: ${unique(products.map(p=>p.packSize)).join(' - ')}\nالفئات: ${unique(products.map(p=>p.segment)).join(' - ')}`;navigator.clipboard.writeText(txt);toast('تم نسخ ملخص الأصناف')}
+
+function setupOrderBuilder(){ if(!$('orderClient')) return; renderOrderClients(); renderOrderProductOptions(); renderOrderBranches(); renderOrderLines(); }
+function renderOrderClients(){const clients=unique(records.map(r=>officialName(r.client)));$('orderClient').innerHTML=clients.map(x=>`<option>${esc(x)}</option>`).join('');}
+function renderOrderBranches(){if(!$('orderBranch'))return; const client=$('orderClient').value; const items=records.filter(r=>officialName(r.client)===client);$('orderBranch').innerHTML=items.map(r=>`<option value="${escAttr(r.id)}">${esc(r.branch)}</option>`).join('');}
+function renderOrderProductOptions(){if(!$('orderProduct'))return; $('orderProduct').innerHTML=products.sort((a,b)=>(a.no||999)-(b.no||999)).map(p=>`<option value="${escAttr(p.id)}">${esc((p.no?p.no+' - ':'')+p.name+' | '+p.barcode)}</option>`).join('');}
+function addOrderLine(){const branch=records.find(r=>r.id===decodeURIComponent($('orderBranch').value)); const product=products.find(p=>p.id===decodeURIComponent($('orderProduct').value)); const qty=Number($('orderQty').value||0); if(!branch||!product||qty<=0){toast('راجع بيانات الأوردر');return} orderLines.push({id:crypto.randomUUID(),client:officialName(branch.client),branch:branch.branch,product:product.name,barcode:product.barcode,packSize:Number(product.packSize||0),qty,note:norm($('orderNote').value)}); renderOrderLines();toast('تم إضافة السطر')}
+function renderOrderLines(){if(!$('orderTable'))return; const eggs=orderLines.reduce((s,x)=>s+(x.qty*(x.packSize||0)),0); const packs=orderLines.reduce((s,x)=>s+x.qty,0); $('orderLinesCount').textContent=orderLines.length;$('orderPackagesTotal').textContent=packs;$('orderEggsTotal').textContent=eggs;$('orderTable').querySelector('tbody').innerHTML=orderLines.map(x=>`<tr><td>${esc(x.client)}</td><td>${esc(x.branch)}</td><td>${esc(x.product)}</td><td class="code-cell">${esc(x.barcode)}</td><td>${x.qty}</td><td>${x.qty*(x.packSize||0)}</td><td>${esc(x.note)}</td><td><button class="btn small danger" onclick="removeOrderLine('${x.id}')">حذف</button></td></tr>`).join('')||'<tr><td colspan="8">لسه مفيش سطور</td></tr>'; $('orderText').value=buildOrderText();}
+function buildOrderText(){if(!orderLines.length)return ''; const grouped={}; orderLines.forEach(x=>{const k=x.client+' | '+x.branch;(grouped[k] ||= []).push(x)}); let txt='أوردر OVAL\nالتاريخ: '+new Date().toLocaleDateString('ar-EG')+'\n\n'; Object.entries(grouped).forEach(([k,items])=>{txt+=k+'\n';items.forEach((x,i)=>txt+=`${i+1}. ${x.product}\nالكود: ${x.barcode}\nالكمية: ${x.qty}\n${x.note?'ملاحظة: '+x.note+'\n':''}`);txt+='\n'}); txt+=`الإجمالي: ${orderLines.reduce((s,x)=>s+x.qty,0)} عبوة | ${orderLines.reduce((s,x)=>s+x.qty*(x.packSize||0),0)} بيضة`; return txt;}
+function removeOrderLine(id){orderLines=orderLines.filter(x=>x.id!==id);renderOrderLines()}
+function clearOrderLines(){orderLines=[];renderOrderLines()}
+function copyOrderText(){navigator.clipboard.writeText($('orderText').value||buildOrderText());toast('تم نسخ الأوردر')}
