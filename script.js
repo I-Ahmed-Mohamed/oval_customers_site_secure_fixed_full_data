@@ -1,328 +1,93 @@
 const PASSWORD = 'oval1';
-const STORAGE_KEY = 'oval.customers.branches.secure.v4.fixed-full-data';
-const OLD_STORAGE_KEY = 'oval.customers.branches.v1';
-const AUDIT_KEY = 'oval.customers.audit.v1';
-const TRASH_KEY = 'oval.customers.trash.v1';
-const SESSION_KEY = 'oval.customers.session.v1';
+const STORAGE_KEY = 'oval.smart.customers.v7';
+const AUDIT_KEY = 'oval.smart.audit.v7';
+const TRASH_KEY = 'oval.smart.trash.v7';
+const SESSION_KEY = 'oval.smart.session.v7';
 const SESSION_MS = 1000 * 60 * 60 * 8;
-
 let records = [];
-let currentView = [];
-let currentUser = 'admin';
-const $ = (id) => document.getElementById(id);
-
-function norm(v){ return String(v || '').trim(); }
-function unique(arr){ return [...new Set(arr.map(norm).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'ar')); }
-function escapeHtml(s){ return String(s||'').replace(/[&<>'"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c])); }
-function showToast(msg){ const t=$('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),1900); }
-
-function encodeSafe(text){ return btoa(unescape(encodeURIComponent(text))); }
-function decodeSafe(text){ return decodeURIComponent(escape(atob(text))); }
-function xorText(text, key){ return [...text].map((ch,i)=>String.fromCharCode(ch.charCodeAt(0) ^ key.charCodeAt(i % key.length))).join(''); }
-function encryptData(data){ return encodeSafe(xorText(JSON.stringify(data), PASSWORD)); }
-function decryptData(cipher){ return JSON.parse(xorText(decodeSafe(cipher), PASSWORD)); }
-function readEncrypted(key, fallback){
-  const cipher = localStorage.getItem(key);
-  if(!cipher) return fallback;
-  try { return decryptData(cipher); } catch(e){ return fallback; }
-}
-function writeEncrypted(key, data){ localStorage.setItem(key, encryptData(data)); }
-
-function initialRecords(){ return (window.INITIAL_CUSTOMERS || []).map(r => ({...r})); }
-function loadRecords(){
-  const base = initialRecords();
-  const secured = readEncrypted(STORAGE_KEY, null);
-  // لو المتصفح كان حافظ نسخة فاضية من إصدار قديم، نرجع الداتا الأساسية بدل ما يفتح الموقع فاضي
-  if(Array.isArray(secured) && secured.length > 0) return secured;
-  if(Array.isArray(secured) && secured.length === 0 && base.length > 0){
-    writeEncrypted(STORAGE_KEY, base);
-    return base;
-  }
-  const old = localStorage.getItem(OLD_STORAGE_KEY);
-  if(old){
-    try{
-      const parsed = JSON.parse(old);
-      if(Array.isArray(parsed)){
-        writeEncrypted(STORAGE_KEY, parsed);
-        localStorage.removeItem(OLD_STORAGE_KEY);
-        return parsed;
-      }
-    }catch(e){}
-  }
-  writeEncrypted(STORAGE_KEY, base);
-  return base;
-}
-function save(){ writeEncrypted(STORAGE_KEY, records); }
-function readAudit(){ return readEncrypted(AUDIT_KEY, []); }
-function saveAudit(list){ writeEncrypted(AUDIT_KEY, list.slice(0,400)); }
-function readTrash(){ return readEncrypted(TRASH_KEY, []); }
-function saveTrash(list){ writeEncrypted(TRASH_KEY, list); }
-function snapshot(r){ return {client:r?.client, branch:r?.branch, state:r?.state, city:r?.city, mobile:r?.mobile, phone:r?.phone, email:r?.email, street:r?.street}; }
-function addLog(action, before=null, after=null){
-  const list = readAudit();
-  list.unshift({id:'log-'+Date.now(), action, by:currentUser, at:new Date().toISOString(), before:snapshot(before), after:snapshot(after)});
-  saveAudit(list);
-}
-function formatDate(iso){ try{return new Date(iso).toLocaleString('ar-EG');}catch(e){return iso;} }
-
-function login(){
-  sessionStorage.setItem(SESSION_KEY, JSON.stringify({ok:true, at:Date.now()}));
-  $('loginScreen').style.display='none';
-  $('appShell').classList.remove('locked');
-  $('appShell').setAttribute('aria-hidden','false');
-  records = loadRecords();
-  render();
-  showToast('تم الدخول بنجاح');
-}
-function logout(){
-  sessionStorage.removeItem(SESSION_KEY);
-  $('appShell').classList.add('locked');
-  $('appShell').setAttribute('aria-hidden','true');
-  $('loginScreen').style.display='grid';
-  $('passwordInput').value='';
-  $('passwordInput').focus();
-}
-function checkSession(){
-  try{
-    const s = JSON.parse(sessionStorage.getItem(SESSION_KEY) || '{}');
-    if(s.ok && Date.now() - s.at < SESSION_MS){ login(); }
-  }catch(e){}
-}
-$('loginForm').addEventListener('submit', e=>{
-  e.preventDefault();
-  if($('passwordInput').value === PASSWORD) login();
-  else { showToast('كلمة السر غير صحيحة'); $('passwordInput').select(); }
-});
-
-function groupByClient(list){ return list.reduce((acc,r)=>{ const key = norm(r.client) || 'عميل بدون اسم'; (acc[key] ||= []).push(r); return acc; },{}); }
-function hasContact(r){ return !!(norm(r.phone)||norm(r.mobile)||norm(r.email)||norm(r.website)); }
-function hasAddress(r){ return !!(norm(r.street)||norm(r.city)||norm(r.state)); }
-function isCompleteEnough(r){ return norm(r.client) && norm(r.branch) && hasContact(r) && hasAddress(r); }
-function missingCount(r){ return ['client','branch','state','city','street','phone','mobile','email'].filter(k=>!norm(r[k])).length; }
-
-function refreshFilters(){
-  fillSelect('stateFilter', unique(records.map(r=>r.state)), 'كل المحافظات');
-  fillSelect('cityFilter', unique(records.map(r=>r.city)), 'كل المدن');
-  fillSelect('termsFilter', unique(records.map(r=>r.paymentTerms)), 'كل شروط الدفع');
-  fillSelect('sourceFilter', unique(records.map(r=>r.sourceSheet)), 'كل الشيتات');
-}
-function fillSelect(id, items, first){
-  const el=$(id), old=el.value;
-  el.innerHTML = `<option value="">${first}</option>` + items.map(v=>`<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`).join('');
-  if(items.includes(old)) el.value=old;
-}
-function getFiltered(){
-  const q=norm($('searchInput').value).toLowerCase();
-  const st=$('stateFilter').value, city=$('cityFilter').value, terms=$('termsFilter').value, source=$('sourceFilter').value, comp=$('completenessFilter').value;
-  return records.filter(r=>{
-    const blob = [r.client,r.branch,r.street,r.city,r.state,r.phone,r.mobile,r.email,r.paymentTerms,r.taxId,r.sourceSheet,r.notes].join(' ').toLowerCase();
-    const passComp = !comp || (comp==='complete' && isCompleteEnough(r)) || (comp==='missingContact' && !hasContact(r)) || (comp==='missingAddress' && !hasAddress(r));
-    return (!q || blob.includes(q)) && (!st || r.state===st) && (!city || r.city===city) && (!terms || r.paymentTerms===terms) && (!source || r.sourceSheet===source) && passComp;
-  });
-}
-function render(){ refreshFilters(); currentView = getFiltered(); renderKPIs(currentView); renderCharts(currentView); renderQuality(currentView); renderList(currentView); }
-function renderKPIs(list){
-  const grouped=groupByClient(list);
-  $('totalClients').textContent = Object.keys(grouped).length;
-  $('totalBranches').textContent = list.length;
-  $('totalStates').textContent = unique(list.map(r=>r.state)).length;
-  $('totalContacts').textContent = list.filter(hasContact).length;
-  $('totalMissing').textContent = list.filter(r=>!isCompleteEnough(r)).length;
-}
-function renderCharts(list){
-  const grouped=groupByClient(list);
-  const top=Object.entries(grouped).map(([name,items])=>({name,count:items.length})).sort((a,b)=>b.count-a.count).slice(0,8);
-  const max=Math.max(1,...top.map(x=>x.count));
-  $('topCount').textContent = `${top.length} عملاء`;
-  $('topClientsChart').innerHTML = top.map(x=>`<div class="bar-row"><div class="bar-name" title="${escapeHtml(x.name)}">${escapeHtml(x.name)}</div><div class="bar-track"><div class="bar-fill" style="width:${Math.max(7,x.count/max*100)}%"></div></div><b>${x.count}</b></div>`).join('') || '<div class="empty">لا توجد بيانات</div>';
-  const states=Object.entries(list.reduce((a,r)=>{const k=r.state||'غير محدد';a[k]=(a[k]||0)+1;return a;},{})).sort((a,b)=>b[1]-a[1]).slice(0,18);
-  $('stateCount').textContent = `${states.length} محافظة/منطقة`;
-  $('statesChart').innerHTML = states.map(([k,v])=>`<span class="chip">${escapeHtml(k)} <b>${v}</b></span>`).join('') || '<div class="empty">لا توجد بيانات</div>';
-}
-function renderQuality(list){
-  const noContact=list.filter(r=>!hasContact(r)).length;
-  const noAddress=list.filter(r=>!hasAddress(r)).length;
-  const complete=list.filter(isCompleteEnough).length;
-  const avgMissing=list.length ? (list.reduce((s,r)=>s+missingCount(r),0)/list.length).toFixed(1) : '0';
-  $('qualityCount').textContent = `${complete} سجل مكتمل نسبيًا`;
-  $('qualityPanel').innerHTML = `
-    <div class="quality-item"><span>مكتمل نسبيًا</span><strong>${complete}</strong></div>
-    <div class="quality-item"><span>ناقص تواصل</span><strong>${noContact}</strong></div>
-    <div class="quality-item"><span>ناقص عنوان</span><strong>${noAddress}</strong></div>
-    <div class="quality-item"><span>متوسط النواقص</span><strong>${avgMissing}</strong></div>`;
-}
-function renderList(list){
-  const grouped=groupByClient(list);
-  const html = Object.entries(grouped).sort((a,b)=>a[0].localeCompare(b[0],'ar')).map(([client,items])=>{
-    const contacts = items.filter(hasContact).length;
-    const incomplete = items.filter(r=>!isCompleteEnough(r)).length;
-    return `<article class="client-card">
-      <div class="client-head">
-        <div class="client-title"><strong>${escapeHtml(client)}</strong><span>${items.length} فرع/سجل · ${contacts} بيانات تواصل · ${incomplete} ناقص</span></div>
-        <div class="client-actions"><button class="btn small" onclick="copyClient('${encodeURIComponent(client)}')">نسخ بيانات العميل</button><button class="btn small" onclick="addBranch('${encodeURIComponent(client)}')">+ إضافة فرع</button></div>
-      </div>
-      <div class="branches">${items.map(branchTemplate).join('')}</div>
-    </article>`;
-  }).join('');
-  $('customersList').innerHTML = html || '<div class="empty">مفيش بيانات مطابقة للبحث الحالي</div>';
-}
-function branchTemplate(r){
-  const address=[r.street,r.city,r.state].filter(Boolean).join(' - ');
-  const warn = !isCompleteEnough(r) ? `<span class="tag-warn">بيانات ناقصة</span>` : '';
-  return `<div class="branch-card">
-    <h4>${escapeHtml(r.branch)}</h4>
-    ${warn}
-    <div class="branch-meta">
-      ${address?`<div>📍 ${escapeHtml(address)}</div>`:'<div>📍 لا يوجد عنوان كافي</div>'}
-      ${r.paymentTerms?`<div>💳 ${escapeHtml(r.paymentTerms)}</div>`:''}
-      ${r.taxId?`<div>🧾 ${escapeHtml(r.taxId)}</div>`:''}
-      ${r.mobile||r.phone?`<div class="copy-field">☎ ${escapeHtml([r.mobile,r.phone].filter(Boolean).join(' / '))}</div>`:'<div>☎ لا يوجد رقم</div>'}
-      ${r.email?`<div class="copy-field">✉ ${escapeHtml(r.email)}</div>`:''}
-      ${r.website?`<div class="copy-field">🌐 ${escapeHtml(r.website)}</div>`:''}
-      <div>📄 ${escapeHtml(r.sourceSheet || 'local')}</div>
-    </div>
-    <div class="branch-actions">
-      <button class="btn small" onclick="editRecord('${r.id}')">تعديل</button>
-      <button class="btn small" onclick="duplicateRecord('${r.id}')">تكرار</button>
-      <button class="btn small" onclick="copyRecord('${r.id}')">نسخ</button>
-      <button class="btn small danger" onclick="deleteRecord('${r.id}')">حذف</button>
-    </div>
-  </div>`;
-}
-
-function copyRecord(id){
-  const r=records.find(x=>x.id===id); if(!r) return;
-  const text = `العميل: ${r.client}\nالفرع: ${r.branch}\nالعنوان: ${[r.street,r.city,r.state].filter(Boolean).join(' - ')}\nالموبايل: ${r.mobile||''}\nالهاتف: ${r.phone||''}\nالإيميل: ${r.email||''}\nشروط الدفع: ${r.paymentTerms||''}\nالرقم الضريبي: ${r.taxId||''}`;
-  navigator.clipboard.writeText(text); showToast('تم نسخ بيانات الفرع'); addLog('نسخ بيانات فرع', r, r);
-}
-function copyClient(encoded){
-  const client=decodeURIComponent(encoded); const items=records.filter(r=>r.client===client);
-  const text = items.map(r=>`• ${r.branch} | ${[r.street,r.city,r.state].filter(Boolean).join(' - ')} | ${r.mobile || r.phone || ''}`).join('\n');
-  navigator.clipboard.writeText(`${client}\n${text}`); showToast('تم نسخ كل فروع العميل'); addLog('نسخ بيانات عميل', {client}, {client});
-}
-function duplicateRecord(id){
-  const r=records.find(x=>x.id===id); if(!r) return;
-  const copy={...r,id:'copy-'+Date.now(),branch:(r.branch||'فرع')+' - نسخة',sourceSheet:'manual-copy',rowNumber:''};
-  records.unshift(copy); save(); addLog('تكرار سجل', r, copy); render(); showToast('تم تكرار السجل');
-}
-function deleteRecord(id){
-  const r=records.find(x=>x.id===id); if(!r) return;
-  const phrase = prompt(`للحذف اكتب كلمة: حذف\n${r.client} - ${r.branch}`);
-  if(phrase !== 'حذف') return showToast('تم إلغاء الحذف');
-  const trash = readTrash();
-  trash.unshift({...r, deletedAt:new Date().toISOString(), deletedBy:currentUser});
-  saveTrash(trash);
-  records=records.filter(x=>x.id!==id); save(); addLog('حذف ونقل للسلة', r, null); render(); showToast('تم النقل لسلة المحذوفات');
-}
-function addBranch(encodedClient=''){ openModal(); if(encodedClient) $('client').value=decodeURIComponent(encodedClient); }
-function editRecord(id){
-  const r=records.find(x=>x.id===id); if(!r) return; openModal('تعديل البيانات');
-  ['client','branch','paymentTerms','taxId','city','state','street','phone','mobile','email','website','notes'].forEach(k=>$(k).value=r[k]||'');
-  $('recordId').value=id;
-}
-function openModal(title='إضافة عميل/فرع'){ $('customerForm').reset(); $('recordId').value=''; $('modalTitle').textContent=title; $('editorDialog').showModal(); }
-function closeModal(){ $('editorDialog').close(); }
-$('customerForm').addEventListener('submit', (e)=>{
-  e.preventDefault();
-  const id=$('recordId').value;
-  const payload={client:norm($('client').value),branch:norm($('branch').value),paymentTerms:norm($('paymentTerms').value),taxId:norm($('taxId').value),city:norm($('city').value),state:norm($('state').value),street:norm($('street').value),phone:norm($('phone').value),mobile:norm($('mobile').value),email:norm($('email').value),website:norm($('website').value),notes:norm($('notes').value)};
-  if(id){
-    const before = records.find(r=>r.id===id);
-    records = records.map(r=>r.id===id?{...r,...payload,updatedAt:new Date().toISOString()}:r);
-    addLog('تعديل بيانات', before, records.find(r=>r.id===id));
-  } else {
-    const created={id:'local-'+Date.now(), sourceSheet:'manual', rowNumber:'', isBranch:true, country:'مصر', street2:'', zip:'', createdAt:new Date().toISOString(), ...payload};
-    records.unshift(created); addLog('إضافة سجل جديد', null, created);
-  }
-  save(); closeModal(); render(); showToast('تم الحفظ');
-});
-
-function exportCsv(){
-  const headers=['client','branch','paymentTerms','taxId','street','city','state','phone','mobile','email','website','sourceSheet'];
-  const rows=currentView.map(r=>headers.map(h=>'"'+String(r[h]||'').replaceAll('"','""')+'"').join(','));
-  downloadFile('\ufeff'+headers.join(',')+'\n'+rows.join('\n'), 'oval-customers.csv', 'text/csv;charset=utf-8');
-  addLog('تصدير CSV', null, {client:'current view', branch:String(currentView.length)});
-}
-function backup(){
-  const payload={exportedAt:new Date().toISOString(), version:2, records, trash:readTrash(), audit:readAudit()};
-  downloadFile(JSON.stringify(payload,null,2),'oval-customers-secure-backup.json','application/json');
-  addLog('نسخ احتياطي JSON', null, {client:'backup', branch:String(records.length)});
-}
-function downloadFile(content, filename, type){ const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([content],{type})); a.download=filename; a.click(); URL.revokeObjectURL(a.href); }
-$('importInput').addEventListener('change', async e=>{
-  const file=e.target.files[0]; if(!file) return;
-  try{
-    const json=JSON.parse(await file.text());
-    const imported = Array.isArray(json) ? json : json.records;
-    if(Array.isArray(imported)){
-      const oldRecords = records;
-      records=imported; save();
-      if(Array.isArray(json.trash)) saveTrash(json.trash);
-      if(Array.isArray(json.audit)) saveAudit(json.audit);
-      addLog('استيراد JSON', {branch:String(oldRecords.length)}, {branch:String(records.length)});
-      render(); showToast('تم الاستيراد');
-    } else alert('ملف JSON غير صحيح');
-  } catch(err){ alert('ملف JSON غير صحيح'); }
-  e.target.value='';
-});
-
-function renderAudit(){
-  const list = readAudit();
-  $('auditList').innerHTML = list.map(l=>`<div class="log-item"><strong>${escapeHtml(l.action)}</strong><small>${formatDate(l.at)} · ${escapeHtml(l.by||'admin')}</small><div class="log-diff">قبل: ${escapeHtml([l.before?.client,l.before?.branch].filter(Boolean).join(' - ') || 'لا يوجد')}<br>بعد: ${escapeHtml([l.after?.client,l.after?.branch].filter(Boolean).join(' - ') || 'لا يوجد')}</div></div>`).join('') || '<div class="empty">لا يوجد حركات حتى الآن</div>';
-}
-function renderTrash(){
-  const list = readTrash();
-  $('trashList').innerHTML = list.map(r=>`<div class="trash-item"><strong>${escapeHtml(r.client)} - ${escapeHtml(r.branch)}</strong><small>حُذف: ${formatDate(r.deletedAt)} · بواسطة ${escapeHtml(r.deletedBy||'admin')}</small><div class="modal-actions"><button class="btn small" onclick="restoreRecord('${r.id}')">استرجاع</button><button class="btn small danger" onclick="purgeRecord('${r.id}')">حذف نهائي</button></div></div>`).join('') || '<div class="empty">سلة المحذوفات فارغة</div>';
-}
-function restoreRecord(id){
-  const trash=readTrash(); const r=trash.find(x=>x.id===id); if(!r) return;
-  const restored={...r,id:r.id+'-restored-'+Date.now()}; delete restored.deletedAt; delete restored.deletedBy;
-  records.unshift(restored); save(); saveTrash(trash.filter(x=>x.id!==id)); addLog('استرجاع من السلة', null, restored); renderTrash(); render(); showToast('تم الاسترجاع');
-}
-function purgeRecord(id){
-  if(!confirm('حذف نهائي من السلة؟')) return;
-  const trash=readTrash(); const r=trash.find(x=>x.id===id);
-  saveTrash(trash.filter(x=>x.id!==id)); addLog('حذف نهائي من السلة', r, null); renderTrash(); showToast('تم الحذف النهائي');
-}
-function exportAudit(){ downloadFile(JSON.stringify(readAudit(),null,2),'oval-audit-log.json','application/json'); }
-function clearAudit(){ if(confirm('مسح سجل الحركات بالكامل؟')){ saveAudit([]); renderAudit(); showToast('تم مسح السجل'); } }
-
-['searchInput','stateFilter','cityFilter','termsFilter','sourceFilter','completenessFilter'].forEach(id=>$(id).addEventListener('input', render));
-$('clearFilters').onclick=()=>{ ['searchInput','stateFilter','cityFilter','termsFilter','sourceFilter','completenessFilter'].forEach(id=>$(id).value=''); render(); };
-$('addBtn').onclick=()=>addBranch();
-$('backupBtn').onclick=backup;
-$('exportCsvBtn').onclick=exportCsv;
-$('closeModal').onclick=closeModal;
-$('cancelModal').onclick=closeModal;
-$('lockBtn').onclick=logout;
-$('auditBtn').onclick=()=>{ renderAudit(); $('auditDialog').showModal(); };
-$('trashBtn').onclick=()=>{ renderTrash(); $('trashDialog').showModal(); };
-$('closeAudit').onclick=()=>$('auditDialog').close();
-$('closeTrash').onclick=()=>$('trashDialog').close();
-$('exportAuditBtn').onclick=exportAudit;
-$('clearAuditBtn').onclick=clearAudit;
-$('resetBtn').onclick=()=>{
-  const phrase=prompt('للرجوع للأصل اكتب: رجوع');
-  if(phrase==='رجوع'){
-    const beforeCount=records.length;
-    records=initialRecords();
-    save();
-    addLog('رجوع للبيانات الأصلية', {branch:String(beforeCount)}, {branch:String(records.length)});
-    render(); showToast('تم الرجوع للأصل');
-  }
-};
-
-function installDeterrents(){
-  document.addEventListener('contextmenu', e=>{ e.preventDefault(); showToast('تم منع كليك يمين لحماية البيانات'); });
-  document.addEventListener('keydown', e=>{
-    const key=e.key.toLowerCase();
-    if(key==='f12' || (e.ctrlKey && e.shiftKey && ['i','j','c'].includes(key)) || (e.ctrlKey && ['u','s'].includes(key))){
-      e.preventDefault();
-      $('securityBlank').classList.add('show');
-      setTimeout(()=>$('securityBlank').classList.remove('show'),1300);
-      showToast('تم منع الاختصار لحماية البيانات');
-    }
-  });
-}
-installDeterrents();
-checkSession();
+let filtered = [];
+let editingId = null;
+const $ = id => document.getElementById(id);
+const norm = v => String(v || '').replace(/\s+/g,' ').trim();
+const lower = v => norm(v).toLowerCase();
+const cleanArabic = v => lower(v).replace(/[أإآا]/g,'ا').replace(/ة/g,'ه').replace(/ى/g,'ي').replace(/ئ/g,'ي').replace(/ؤ/g,'و').replace(/[^\u0600-\u06FFa-z0-9 ]/g,' ');
+const unique = arr => [...new Set(arr.map(norm).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'ar'));
+function esc(s){return String(s||'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
+function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800)}
+function encodeSafe(text){return btoa(unescape(encodeURIComponent(text)))}
+function decodeSafe(text){return decodeURIComponent(escape(atob(text)))}
+function xorText(text,key){return [...text].map((ch,i)=>String.fromCharCode(ch.charCodeAt(0)^key.charCodeAt(i%key.length))).join('')}
+function encrypt(data){return encodeSafe(xorText(JSON.stringify(data),PASSWORD))}
+function decrypt(text){return JSON.parse(xorText(decodeSafe(text),PASSWORD))}
+function readEnc(key,fallback){try{const v=localStorage.getItem(key);return v?decrypt(v):fallback}catch(e){return fallback}}
+function writeEnc(key,data){localStorage.setItem(key,encrypt(data))}
+function initialRecords(){return (window.INITIAL_CUSTOMERS||[]).map((r,i)=>normalizeRecord({...r,id:r.id||`rec-${Date.now()}-${i}`}));}
+function normalizeRecord(r){r.client=norm(r.client||r.clientOriginal);r.branch=norm(r.branchFullName||r.branch||r.client);r.branchFullName=r.branch;r.taxId=norm(r.taxId);r.state=norm(r.state);r.city=norm(r.city);r.street=norm(r.street);r.phone=norm(r.phone);r.mobile=norm(r.mobile);r.email=norm(r.email);r.website=norm(r.website);r.paymentTerms=norm(r.paymentTerms);r.notes=norm(r.notes);return r;}
+function load(){let saved=readEnc(STORAGE_KEY,null); if(Array.isArray(saved)&&saved.length){records=saved.map(normalizeRecord)} else {records=initialRecords(); writeEnc(STORAGE_KEY,records)} }
+function save(){writeEnc(STORAGE_KEY,records)}
+function audit(){return readEnc(AUDIT_KEY,[])} function saveAudit(a){writeEnc(AUDIT_KEY,a.slice(0,500))}
+function trash(){return readEnc(TRASH_KEY,[])} function saveTrash(t){writeEnc(TRASH_KEY,t)}
+function addLog(action,before,after){const a=audit();a.unshift({id:crypto.randomUUID(),at:new Date().toISOString(),action,before:snap(before),after:snap(after)});saveAudit(a);renderAudit()}
+function snap(r){if(!r)return null;return {client:r.client,branch:r.branch,state:r.state,city:r.city,taxId:r.taxId,mobile:r.mobile,email:r.email}}
+const ALIASES = [
+  ['المنصوره','وكالة المنصورة'],['وكاله المنصوره','وكالة المنصورة'],['وكالة المنصورة','وكالة المنصورة'],
+  ['بنده','بندة'],['بندة','بندة'],['panda','بندة'],
+  ['اوسكار','أوسكار جراند ستورز'],['جراند','أوسكار جراند ستورز'],
+  ['سبينيس','سبينيس'],['spinneys','سبينيس'],
+  ['اللولو','اللولو هايبر ماركت'],['lulu','اللولو هايبر ماركت'],
+  ['الفار','الفار'],['زهران','زهران'],['اولاد رجب','أولاد رجب'],
+  ['كازيون','أوكازيون'],['اوكازيون','أوكازيون'],
+  ['ماف','كارفور'],['كارفور','كارفور'],['carrefour','كارفور'],
+  ['سوق دوت كوم','أمازون / نون'],['امازون','أمازون'],['amazon','أمازون'],['نون','نون'],
+  ['رع ماركت','جيان ماركت / رع'],['جيان','جيان ماركت / رع'],
+  ['جودز','جودز مارت'],['سوبر سنتر','سوبر سنتر'],['سانت ريجيس العاصمة','فندق سانت ريجيس العاصمة'],['ماريوت','فندق ماريوت مينا هاوس'],
+  ['هيلتون','فندق هيلتون هليوبلس'],['رايدسون','فندق رايدسون بلو شيراتون'],['بان كيكس','بان كيكس فودز'],['بيم','بيم'],['سوان','سوان ماركت'],
+  ['تمار','شركة تمار هوم'],['جاما','جاما للإنشاءات والطرق'],['meimhardt','MEIMHARDT'],['الهندسية','الشركة الهندسية للإنشاء والتعمير'],['تالنت','شركة تالنت الهندسية'],['روشن','شركة روشن']
+];
+function officialName(name){const c=cleanArabic(name); for(const [needle,off] of ALIASES){if(c.includes(cleanArabic(needle)))return off} return norm(name)||'عميل غير محدد'}
+function registryTax(official){const reg=(window.TAX_REGISTRY||[]).find(x=>cleanArabic(official).includes(cleanArabic(x.name))||cleanArabic(x.name).includes(cleanArabic(official))); return reg?.taxId||''}
+function taxFor(r){return r.taxId||registryTax(officialName(r.client))||''}
+function hasContact(r){return !!(norm(r.mobile)||norm(r.phone)||norm(r.email))}
+function hasAddress(r){return !!(norm(r.street)||norm(r.city)||norm(r.state))}
+function isComplete(r){return hasContact(r)&&hasAddress(r)&&!!taxFor(r)}
+function score(r){return ['client','branch','taxId','state','city','street','phone','mobile','email'].reduce((n,k)=>n+(norm(k==='taxId'?taxFor(r):r[k])?1:0),0)}
+function allGroups(list=filtered){return list.reduce((acc,r)=>{const key=officialName(r.client);(acc[key] ||= []).push(r);return acc},{})}
+function login(){if($('passwordInput').value===PASSWORD){sessionStorage.setItem(SESSION_KEY,String(Date.now()+SESSION_MS));$('loginScreen').classList.add('hidden');$('app').classList.remove('hidden');initApp()}else{$('loginMsg').textContent='كلمة السر غير صحيحة'}}
+function checkSession(){return Number(sessionStorage.getItem(SESSION_KEY)||0)>Date.now()}
+function logout(){sessionStorage.removeItem(SESSION_KEY);location.reload()}
+function setupProtection(){document.addEventListener('contextmenu',e=>e.preventDefault());document.addEventListener('keydown',e=>{const k=e.key.toLowerCase();if(e.key==='F12'||(e.ctrlKey&&e.shiftKey&&['i','j','c'].includes(k))||(e.ctrlKey&&['u','s'].includes(k))){e.preventDefault();toast('البيانات خاصة ومحمية بشكل ردعي')}})}
+function initApp(){load();bindEvents();applyFilters();renderRegistry();renderAudit();renderTrash();}
+function bindEvents(){['search','clientFilter','stateFilter','qualityFilter'].forEach(id=>$(id).addEventListener('input',applyFilters));$('importFile').addEventListener('change',importJSON);document.querySelectorAll('.nav-btn').forEach(b=>b.addEventListener('click',()=>switchTab(b.dataset.tab)));}
+function switchTab(id){document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.id===id));}
+function applyFilters(){const q=lower($('search')?.value||'');const cf=$('clientFilter')?.value||'';const sf=$('stateFilter')?.value||'';const qf=$('qualityFilter')?.value||'';filtered=records.filter(r=>{const blob=[r.client,r.branch,r.street,r.city,r.state,r.phone,r.mobile,r.email,taxFor(r),r.paymentTerms,r.notes,officialName(r.client)].join(' ').toLowerCase();if(q&&!blob.includes(q))return false;if(cf&&officialName(r.client)!==cf)return false;if(sf&&r.state!==sf)return false;if(qf==='complete'&&!isComplete(r))return false;if(qf==='missingContact'&&hasContact(r))return false;if(qf==='missingAddress'&&hasAddress(r))return false;if(qf==='missingTax'&&taxFor(r))return false;return true});renderAll();}
+function renderAll(){renderFilters();renderDashboard();renderCustomers();renderBranches();renderQuality();}
+function renderFilters(){const clients=unique(records.map(r=>officialName(r.client)));const states=unique(records.map(r=>r.state));const curC=$('clientFilter').value,curS=$('stateFilter').value;$('clientFilter').innerHTML='<option value="">كل العملاء</option>'+clients.map(x=>`<option ${x===curC?'selected':''}>${esc(x)}</option>`).join('');$('stateFilter').innerHTML='<option value="">كل المحافظات</option>'+states.map(x=>`<option ${x===curS?'selected':''}>${esc(x)}</option>`).join('');}
+function renderDashboard(){const groups=allGroups(records);const fg=allGroups(filtered);const clients=Object.keys(groups);const states=unique(records.map(r=>r.state));$('totalClients').textContent=clients.length;$('totalBranches').textContent=records.length;$('totalStates').textContent=states.length;$('withContact').textContent=records.filter(hasContact).length;$('missingData').textContent=records.filter(r=>!isComplete(r)).length;renderBars('topClientsChart',Object.entries(fg).map(([name,items])=>[name,items.length]).sort((a,b)=>b[1]-a[1]).slice(0,8));$('topClientsCount').textContent=`${Object.keys(fg).length} عميل في العرض`;const stateCounts={};filtered.forEach(r=>{stateCounts[r.state||'غير محدد']=(stateCounts[r.state||'غير محدد']||0)+1});renderBars('statesChart',Object.entries(stateCounts).sort((a,b)=>b[1]-a[1]).slice(0,8));$('statesCount').textContent=`${Object.keys(stateCounts).length} محافظة/منطقة`;renderAlerts();renderSummary();}
+function renderBars(id,rows){const max=Math.max(1,...rows.map(r=>r[1]));$(id).innerHTML=rows.map(([name,n])=>`<div class="bar-row"><div class="bar-name">${esc(name)}</div><div class="bar-track"><div class="bar-fill" style="width:${Math.max(6,n/max*100)}%"></div></div><div class="bar-num">${n}</div></div>`).join('')||'<div class="empty">لا توجد بيانات</div>';}
+function renderAlerts(){const missingContact=records.filter(r=>!hasContact(r)).length, missingAddress=records.filter(r=>!hasAddress(r)).length, missingTax=records.filter(r=>!taxFor(r)).length;const biggest=Object.entries(allGroups(records)).sort((a,b)=>b[1].length-a[1].length)[0];$('smartAlerts').innerHTML=[`أكبر عميل في عدد الفروع: ${biggest?biggest[0]+' ('+biggest[1].length+')':'لا يوجد'}`,`سجلات ناقصة بيانات تواصل: ${missingContact}`,`سجلات ناقصة عنوان: ${missingAddress}`,`سجلات ناقصة رقم ضريبي: ${missingTax}`,`تم ربط الأرقام الضريبية المتاحة من سجل العملاء تلقائيًا`].map(x=>`<div class="alert">${esc(x)}</div>`).join('');}
+function renderSummary(){const g=allGroups(records);const top=Object.entries(g).sort((a,b)=>b[1].length-a[1].length).slice(0,10).map(([n,it])=>`- ${n}: ${it.length} فرع/سجل`).join('\n');$('managerSummary').value=`ملخص العملاء والفروع\nإجمالي العملاء: ${Object.keys(g).length}\nإجمالي الفروع/السجلات: ${records.length}\nإجمالي المحافظات/المناطق: ${unique(records.map(r=>r.state)).length}\nسجلات بها بيانات تواصل: ${records.filter(hasContact).length}\nسجلات تحتاج مراجعة: ${records.filter(r=>!isComplete(r)).length}\n\nأكبر العملاء حسب عدد الفروع:\n${top}`;}
+function renderCustomers(){const g=allGroups(filtered);$('customersList').innerHTML=Object.entries(g).sort((a,b)=>a[0].localeCompare(b[0],'ar')).map(([client,items])=>{const contacts=items.filter(hasContact).length, complete=items.filter(isComplete).length, tax=registryTax(client)||taxFor(items[0])||'غير مسجل';return `<article class="client-card"><div class="client-head"><div class="client-title"><b>${esc(client)}</b><small>${items.length} فرع/سجل · مكتمل ${complete} · بيانات تواصل ${contacts} · رقم ضريبي: ${esc(tax)}</small></div><div class="client-actions"><button class="btn small" onclick="copyClient('${escAttr(client)}')">نسخ العميل</button><button class="btn small" onclick="openEditor(null,'${escAttr(client)}')">+ إضافة فرع</button></div></div><div class="branch-grid">${items.map(branchCard).join('')}</div></article>`}).join('')||'<div class="panel">لا توجد بيانات</div>';}
+function branchCard(r){return `<div class="branch-card"><h3>${esc(r.branch)}</h3><div class="meta"><span>العميل الأصلي: ${esc(r.client)}</span><span>المحافظة: ${esc(r.state||'غير محدد')} · المدينة: ${esc(r.city||'غير محدد')}</span><span>الرقم الضريبي: ${esc(taxFor(r)||'غير مسجل')}</span><span>التواصل: ${esc([r.mobile,r.phone,r.email].filter(Boolean).join(' | ')||'غير مسجل')}</span><span>العنوان: ${esc([r.street,r.city,r.state].filter(Boolean).join(' - ')||'غير مسجل')}</span></div><div class="card-actions"><button class="btn small" onclick="copyRecord('${r.id}')">نسخ</button><button class="btn small" onclick="openEditor('${r.id}')">تعديل</button><button class="btn small danger" onclick="deleteRecord('${r.id}')">حذف</button></div></div>`}
+function renderBranches(){const tb=$('branchesTable').querySelector('tbody');tb.innerHTML=filtered.map(r=>`<tr><td>${esc(officialName(r.client))}<br><small>${esc(r.client)}</small></td><td><b>${esc(r.branch)}</b><br><small>${esc(r.street||'')}</small></td><td>${esc(r.state)}</td><td>${esc(r.city)}</td><td>${esc(taxFor(r)||'غير مسجل')}</td><td>${esc([r.mobile,r.phone,r.email].filter(Boolean).join(' | ')||'غير مسجل')}</td><td><button class="btn small" onclick="copyRecord('${r.id}')">نسخ</button> <button class="btn small" onclick="openEditor('${r.id}')">تعديل</button> <button class="btn small danger" onclick="deleteRecord('${r.id}')">حذف</button></td></tr>`).join('')||'<tr><td colspan="7">لا توجد بيانات</td></tr>';}
+function renderRegistry(){const list=window.TAX_REGISTRY||[];$('registryList').innerHTML=list.map(x=>`<div class="registry-item"><b>${esc(x.name)}</b><span>${esc(x.taxId)}</span></div>`).join('');}
+function renderQuality(){const missingContact=records.filter(r=>!hasContact(r));const missingAddress=records.filter(r=>!hasAddress(r));const missingTax=records.filter(r=>!taxFor(r));$('qualityCards').innerHTML=[['ناقص تواصل',missingContact.length],['ناقص عنوان',missingAddress.length],['ناقص رقم ضريبي',missingTax.length]].map(([n,c])=>`<div class="quality-card"><span>${n}</span><b>${c}</b></div>`).join('');const issues=records.filter(r=>!isComplete(r)).sort((a,b)=>score(a)-score(b)).slice(0,120);$('qualityCount').textContent=`${issues.length} من أصل ${records.filter(r=>!isComplete(r)).length}`;$('qualityList').innerHTML=issues.map(r=>`<div class="issue"><b>${esc(officialName(r.client))} - ${esc(r.branch)}</b><small>${!hasContact(r)?'ناقص تواصل · ':''}${!hasAddress(r)?'ناقص عنوان · ':''}${!taxFor(r)?'ناقص رقم ضريبي':''}</small><div class="card-actions"><button class="btn small" onclick="openEditor('${r.id}')">تعديل</button><button class="btn small" onclick="copyRecord('${r.id}')">نسخ</button></div></div>`).join('')||'<div class="empty">كل البيانات جيدة</div>';}
+function escAttr(s){return encodeURIComponent(String(s||''))}
+function openEditor(id=null,clientName=''){editingId=id;const r=id?records.find(x=>x.id===id):null;$('editorTitle').textContent=id?'تعديل فرع/عميل':'إضافة فرع/عميل';$('editId').value=id||'';['client','branch','taxId','paymentTerms','state','city','street','phone','mobile','email','website','notes'].forEach(k=>$(k).value=r?(k==='taxId'?taxFor(r):r[k]||''):'');if(!r&&clientName){$('client').value=decodeURIComponent(clientName);$('taxId').value=registryTax($('client').value)}$('editor').classList.remove('hidden')}
+function closeEditor(){$('editor').classList.add('hidden')}
+function saveEditor(e){e.preventDefault();const payload={id:editingId||crypto.randomUUID(),client:norm($('client').value),branch:norm($('branch').value),branchFullName:norm($('branch').value),taxId:norm($('taxId').value),paymentTerms:norm($('paymentTerms').value),state:norm($('state').value),city:norm($('city').value),street:norm($('street').value),phone:norm($('phone').value),mobile:norm($('mobile').value),email:norm($('email').value),website:norm($('website').value),notes:norm($('notes').value),isBranch:true,sourceSheet:'manual'};if(!payload.taxId)payload.taxId=registryTax(officialName(payload.client));if(editingId){const i=records.findIndex(x=>x.id===editingId);const old={...records[i]};records[i]=normalizeRecord({...records[i],...payload});addLog('تعديل',old,records[i])}else{records.unshift(normalizeRecord(payload));addLog('إضافة',null,payload)}save();closeEditor();applyFilters();toast('تم الحفظ')}
+function copyRecord(id){const r=records.find(x=>x.id===id);if(!r)return;const txt=`العميل: ${officialName(r.client)}\nاسم الفرع كامل: ${r.branch}\nالرقم الضريبي: ${taxFor(r)||''}\nالمحافظة: ${r.state||''}\nالمدينة: ${r.city||''}\nالعنوان: ${[r.street,r.city,r.state].filter(Boolean).join(' - ')}\nالتواصل: ${[r.mobile,r.phone,r.email].filter(Boolean).join(' | ')}`;navigator.clipboard.writeText(txt);addLog('نسخ فرع',r,r);toast('تم النسخ')}
+function copyClient(encoded){const client=decodeURIComponent(encoded);const items=records.filter(r=>officialName(r.client)===client);const txt=`${client}\nإجمالي الفروع/السجلات: ${items.length}\nالرقم الضريبي: ${registryTax(client)||taxFor(items[0])||''}\n\n`+items.map((r,i)=>`${i+1}. ${r.branch} - ${[r.city,r.state].filter(Boolean).join(' / ')}`).join('\n');navigator.clipboard.writeText(txt);addLog('نسخ عميل',null,{client,branch:String(items.length)});toast('تم نسخ بيانات العميل')}
+function deleteRecord(id){const r=records.find(x=>x.id===id);if(!r)return;const phrase=prompt(`للحذف اكتب: حذف\n${r.client} - ${r.branch}`);if(phrase!=='حذف')return;records=records.filter(x=>x.id!==id);const t=trash();t.unshift({...r,deletedAt:new Date().toISOString()});saveTrash(t);save();addLog('حذف',r,null);applyFilters();renderTrash();toast('تم النقل لسلة المحذوفات')}
+function renderAudit(){const a=audit();$('auditList').innerHTML=a.map(x=>`<div class="log-item"><b>${esc(x.action)}</b><small>${new Date(x.at).toLocaleString('ar-EG')}</small><div>${esc([x.before?.client,x.before?.branch].filter(Boolean).join(' - ')||'—')} ⟵ ${esc([x.after?.client,x.after?.branch].filter(Boolean).join(' - ')||'—')}</div></div>`).join('')||'<div class="empty">لا توجد حركات</div>'}
+function renderTrash(){const t=trash();$('trashList').innerHTML=t.map(r=>`<div class="trash-item"><b>${esc(r.client)} - ${esc(r.branch)}</b><small>${new Date(r.deletedAt).toLocaleString('ar-EG')}</small><div class="card-actions"><button class="btn small" onclick="restoreRecord('${r.id}')">استرجاع</button><button class="btn small danger" onclick="purgeRecord('${r.id}')">حذف نهائي</button></div></div>`).join('')||'<div class="empty">السلة فارغة</div>'}
+function restoreRecord(id){const t=trash();const r=t.find(x=>x.id===id);if(!r)return;records.unshift(normalizeRecord(r));saveTrash(t.filter(x=>x.id!==id));save();addLog('استرجاع',null,r);applyFilters();renderTrash();toast('تم الاسترجاع')}
+function purgeRecord(id){if(prompt('للحذف النهائي اكتب: نهائي')!=='نهائي')return;saveTrash(trash().filter(x=>x.id!==id));renderTrash();toast('تم الحذف النهائي')}
+function clearAudit(){if(prompt('لمسح السجل اكتب: مسح')==='مسح'){saveAudit([]);renderAudit()}}
+function emptyTrash(){if(prompt('لتفريغ السلة اكتب: تفريغ')==='تفريغ'){saveTrash([]);renderTrash()}}
+function exportCSV(){const headers=['العميل الرسمي','اسم العميل الأصلي','اسم الفرع الكامل','الرقم الضريبي','المحافظة','المدينة','العنوان','هاتف','موبايل','إيميل','شروط الدفع'];const rows=filtered.map(r=>[officialName(r.client),r.client,r.branch,taxFor(r),r.state,r.city,r.street,r.phone,r.mobile,r.email,r.paymentTerms]);const csv=[headers,...rows].map(row=>row.map(v=>'"'+String(v||'').replaceAll('"','""')+'"').join(',')).join('\n');downloadBlob('\ufeff'+csv,'oval-customers-branches.csv','text/csv;charset=utf-8');addLog('تصدير CSV',null,{client:'CSV',branch:String(filtered.length)})}
+function backupJSON(){downloadBlob(JSON.stringify({records,audit:audit(),trash:trash(),taxRegistry:window.TAX_REGISTRY,createdAt:new Date().toISOString()},null,2),'oval-customers-backup.json','application/json');addLog('نسخ احتياطي',null,{client:'backup',branch:String(records.length)})}
+function importJSON(e){const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=()=>{try{const obj=JSON.parse(reader.result);const imported=Array.isArray(obj)?obj:obj.records;if(!Array.isArray(imported))throw new Error('bad');if(prompt(`هيتم استيراد ${imported.length} سجل. اكتب: استيراد`) !== 'استيراد')return;records=imported.map(normalizeRecord);save();addLog('استيراد JSON',null,{client:'import',branch:String(records.length)});applyFilters();toast('تم الاستيراد')}catch(err){alert('ملف غير صحيح')}};reader.readAsText(file);e.target.value=''}
+function downloadBlob(content,name,type){const b=new Blob([content],{type});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;a.click();URL.revokeObjectURL(a.href)}
+function clearFilters(){$('search').value='';$('clientFilter').value='';$('stateFilter').value='';$('qualityFilter').value='';applyFilters()}
+function copyManagementText(){navigator.clipboard.writeText($('managerSummary').value);toast('تم نسخ الملخص')}
+window.addEventListener('DOMContentLoaded',()=>{setupProtection();$('loginBtn').addEventListener('click',login);$('passwordInput').addEventListener('keydown',e=>{if(e.key==='Enter')login()});if(checkSession()){ $('loginScreen').classList.add('hidden');$('app').classList.remove('hidden');initApp();}});

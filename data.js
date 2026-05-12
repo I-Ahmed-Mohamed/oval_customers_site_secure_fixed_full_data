@@ -18,7 +18,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01066816744",
     "email": "wekala.hesabat@gmail.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "المنصوره لتجاره المواد الغذائيه وكاله المنصوره",
+    "clientOriginal": "المنصوره لتجاره المواد الغذائيه وكاله المنصوره"
   },
   {
     "id": "customer-4-2",
@@ -39,7 +41,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01066816744",
     "email": "wekala.hesabat@gmail.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "المنصوره لتجاره المواد الغذائيه وكاله المنصوره اجا",
+    "clientOriginal": "المنصوره لتجاره المواد الغذائيه وكاله المنصوره"
   },
   {
     "id": "customer-5-3",
@@ -60,7 +64,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01066816744",
     "email": "wekala.hesabat@gmail.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "المنصوره لتجاره المواد الغذائيه وكاله المنصوره الترعة",
+    "clientOriginal": "المنصوره لتجاره المواد الغذائيه وكاله المنصوره"
   },
   {
     "id": "customer-6-4",
@@ -81,7 +87,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01066816744",
     "email": "wekala.hesabat@gmail.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "المنصوره لتجاره المواد الغذائيه وكاله المنصوره برايم مارت",
+    "clientOriginal": "المنصوره لتجاره المواد الغذائيه وكاله المنصوره"
   },
   {
     "id": "customer-7-5",
@@ -102,7 +110,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01066816744",
     "email": "wekala.hesabat@gmail.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "المنصوره لتجاره المواد الغذائيه وكاله المنصوره خطاب",
+    "clientOriginal": "المنصوره لتجاره المواد الغذائيه وكاله المنصوره"
   },
   {
     "id": "customer-8-6",
@@ -123,7 +133,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01066816744",
     "email": "wekala.hesabat@gmail.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "المنصوره لتجاره المواد الغذائيه وكاله المنصوره السويس",
+    "clientOriginal": "المنصوره لتجاره المواد الغذائيه وكاله المنصوره"
   },
   {
     "id": "customer-9-7",
@@ -144,7 +156,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01066816744",
     "email": "wekala.hesabat@gmail.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "المنصوره لتجاره المواد الغذائيه وكاله المنصوره الامام",
+    "clientOriginal": "المنصوره لتجاره المواد الغذائيه وكاله المنصوره"
   },
   {
     "id": "customer-10-8",
@@ -165,7 +179,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01066816744",
     "email": "wekala.hesabat@gmail.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "المنصوره لتجاره المواد الغذائيه وكاله المنصوره الهايبر",
+    "clientOriginal": "المنصوره لتجاره المواد الغذائيه وكاله المنصوره"
   },
   {
     "id": "customer-11-9",
@@ -186,7 +202,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01066816744",
     "email": "wekala.hesabat@gmail.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "المنصوره لتجاره المواد الغذائيه وكاله المنصوره المختلط",
+    "clientOriginal": "المنصوره لتجاره المواد الغذائيه وكاله المنصوره"
   },
   {
     "id": "customer-12-10",
@@ -207,7 +225,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01066816744",
     "email": "wekala.hesabat@gmail.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "المنصوره لتجاره المواد الغذائيه وكاله المنصوره المشاية",
+    "clientOriginal": "المنصوره لتجاره المواد الغذائيه وكاله المنصوره"
   },
   {
     "id": "customer-13-11",
@@ -228,7 +248,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01066816744",
     "email": "wekala.hesabat@gmail.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "المنصوره لتجاره المواد الغذائيه وكاله المنصوره الجامعة",
+    "clientOriginal": "المنصوره لتجاره المواد الغذائيه وكاله المنصوره"
   },
   {
     "id": "customer-14-12",
@@ -249,7 +271,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01066816744",
     "email": "wekala.hesabat@gmail.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "المنصوره لتجاره المواد الغذائيه وكاله المنصوره النوادى",
+    "clientOriginal": "المنصوره لتجاره المواد الغذائيه وكاله المنصوره"
   },
   {
     "id": "customer-15-13",
@@ -270,7 +294,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01066816744",
     "email": "wekala.hesabat@gmail.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "المنصوره لتجاره المواد الغذائيه وكاله المنصوره البحر الأعظم",
+    "clientOriginal": "المنصوره لتجاره المواد الغذائيه وكاله المنصوره"
   },
   {
     "id": "customer-16-14",
@@ -291,7 +317,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01066816744",
     "email": "wekala.hesabat@gmail.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "المنصوره لتجاره المواد الغذائيه وكاله المنصوره صلاح سالم طلخا",
+    "clientOriginal": "المنصوره لتجاره المواد الغذائيه وكاله المنصوره"
   },
   {
     "id": "customer-17-15",
@@ -312,7 +340,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01066816744",
     "email": "wekala.hesabat@gmail.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "المنصوره لتجاره المواد الغذائيه وكاله المنصوره شربين",
+    "clientOriginal": "المنصوره لتجاره المواد الغذائيه وكاله المنصوره"
   },
   {
     "id": "customer-18-16",
@@ -333,7 +363,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01066816744",
     "email": "wekala.hesabat@gmail.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "المنصوره لتجاره المواد الغذائيه وكاله المنصوره بلقاس",
+    "clientOriginal": "المنصوره لتجاره المواد الغذائيه وكاله المنصوره"
   },
   {
     "id": "customer-19-17",
@@ -354,7 +386,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01066816744",
     "email": "wekala.hesabat@gmail.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "المنصوره لتجاره المواد الغذائيه وكاله المنصوره دكرنس",
+    "clientOriginal": "المنصوره لتجاره المواد الغذائيه وكاله المنصوره"
   },
   {
     "id": "customer-20-18",
@@ -375,7 +409,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01066816744",
     "email": "wekala.hesabat@gmail.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "المنصوره لتجاره المواد الغذائيه وكاله المنصوره السنبلاوين",
+    "clientOriginal": "المنصوره لتجاره المواد الغذائيه وكاله المنصوره"
   },
   {
     "id": "customer-21-19",
@@ -396,7 +432,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01066816744",
     "email": "wekala.hesabat@gmail.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "المنصوره لتجاره المواد الغذائيه وكاله المنصوره المنزلة",
+    "clientOriginal": "المنصوره لتجاره المواد الغذائيه وكاله المنصوره"
   },
   {
     "id": "customer-22-20",
@@ -417,7 +455,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "1012233155",
     "email": "KMSayed@panda.com.sa",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "بنده العالميه لتجاره التجزئه مصر",
+    "clientOriginal": "بنده العالميه لتجاره التجزئه مصر"
   },
   {
     "id": "customer-23-21",
@@ -438,7 +478,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "1012233155",
     "email": "KMSayed@panda.com.sa",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "بنده العالميه لتجاره التجزئه مصر أكتوبر",
+    "clientOriginal": "بنده العالميه لتجاره التجزئه مصر"
   },
   {
     "id": "customer-24-22",
@@ -459,7 +501,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "1012233155",
     "email": "KMSayed@panda.com.sa",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "بنده العالميه لتجاره التجزئه المعادى",
+    "clientOriginal": "بنده العالميه لتجاره التجزئه مصر"
   },
   {
     "id": "customer-25-23",
@@ -480,7 +524,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "1012233155",
     "email": "KMSayed@panda.com.sa",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "بنده العالميه لتجاره التجزئه مدينة نصر",
+    "clientOriginal": "بنده العالميه لتجاره التجزئه مصر"
   },
   {
     "id": "customer-26-24",
@@ -501,7 +547,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "1012233155",
     "email": "KMSayed@panda.com.sa",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "بنده العالميه لتجاره التجزئه مصر الرحاب",
+    "clientOriginal": "بنده العالميه لتجاره التجزئه مصر"
   },
   {
     "id": "customer-27-25",
@@ -522,7 +570,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "1012233155",
     "email": "KMSayed@panda.com.sa",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "بنده العالميه لتجاره التجزئه مصر العبور",
+    "clientOriginal": "بنده العالميه لتجاره التجزئه مصر"
   },
   {
     "id": "customer-28-26",
@@ -543,7 +593,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "1012233155",
     "email": "KMSayed@panda.com.sa",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "بنده العالميه لتجاره التجزئه مصر قها",
+    "clientOriginal": "بنده العالميه لتجاره التجزئه مصر"
   },
   {
     "id": "customer-29-27",
@@ -564,7 +616,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01220471678",
     "email": "peter.mohsen@oscarstores.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "المجموعه الدوليه لتجاره المواد الغذائيه اوسكار جراند استورز",
+    "clientOriginal": "المجموعه الدوليه لتجاره المواد الغذائيه اوسكار جراند استورز"
   },
   {
     "id": "customer-30-28",
@@ -585,7 +639,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01220471678",
     "email": "peter.mohsen@oscarstores.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "المجموعه الدوليه لتجاره المواد الغذائيه اوسكار جراند استورز مدينتى",
+    "clientOriginal": "المجموعه الدوليه لتجاره المواد الغذائيه اوسكار جراند استورز"
   },
   {
     "id": "customer-31-29",
@@ -606,7 +662,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01220471678",
     "email": "peter.mohsen@oscarstores.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "المجموعه الدوليه لتجاره المواد الغذائيه اوسكار جراند استورز التجمع",
+    "clientOriginal": "المجموعه الدوليه لتجاره المواد الغذائيه اوسكار جراند استورز"
   },
   {
     "id": "customer-32-30",
@@ -627,7 +685,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01220471678",
     "email": "peter.mohsen@oscarstores.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "المجموعه الدوليه لتجاره المواد الغذائيه اوسكار جراند استورز زايد",
+    "clientOriginal": "المجموعه الدوليه لتجاره المواد الغذائيه اوسكار جراند استورز"
   },
   {
     "id": "customer-33-31",
@@ -648,7 +708,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01220471678",
     "email": "peter.mohsen@oscarstores.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "المجموعه الدوليه لتجاره المواد الغذائيه اوسكار جراند استورز المعادى",
+    "clientOriginal": "المجموعه الدوليه لتجاره المواد الغذائيه اوسكار جراند استورز"
   },
   {
     "id": "customer-34-32",
@@ -669,7 +731,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01220471678",
     "email": "peter.mohsen@oscarstores.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "المجموعه الدوليه لتجاره المواد الغذائيه اوسكار جراند استورز الماظة",
+    "clientOriginal": "المجموعه الدوليه لتجاره المواد الغذائيه اوسكار جراند استورز"
   },
   {
     "id": "customer-35-33",
@@ -690,7 +754,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01220471678",
     "email": "peter.mohsen@oscarstores.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "المجموعه الدوليه لتجاره المواد الغذائيه اوسكار جراند استورز واترواى",
+    "clientOriginal": "المجموعه الدوليه لتجاره المواد الغذائيه اوسكار جراند استورز"
   },
   {
     "id": "customer-36-34",
@@ -711,7 +777,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01220471678",
     "email": "peter.mohsen@oscarstores.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "المجموعه الدوليه لتجاره المواد الغذائيه اوسكار جراند استورز مصر الجديدة",
+    "clientOriginal": "المجموعه الدوليه لتجاره المواد الغذائيه اوسكار جراند استورز"
   },
   {
     "id": "customer-37-35",
@@ -732,7 +800,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01220471678",
     "email": "peter.mohsen@oscarstores.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "المجموعه الدوليه لتجاره المواد الغذائيه اوسكار جراند استورز الساحل الشمالى",
+    "clientOriginal": "المجموعه الدوليه لتجاره المواد الغذائيه اوسكار جراند استورز"
   },
   {
     "id": "customer-38-36",
@@ -753,7 +823,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01220471678",
     "email": "peter.mohsen@oscarstores.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "المجموعه الدوليه لتجاره المواد الغذائيه اوسكار جراند استورز ايتابا",
+    "clientOriginal": "المجموعه الدوليه لتجاره المواد الغذائيه اوسكار جراند استورز"
   },
   {
     "id": "customer-39-37",
@@ -774,7 +846,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت",
+    "clientOriginal": "سبينيس ايجيبت"
   },
   {
     "id": "customer-40-38",
@@ -795,7 +869,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت مول العرب",
+    "clientOriginal": "سبينيس ايجيبت"
   },
   {
     "id": "customer-41-39",
@@ -816,7 +892,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت سيتى سكيب",
+    "clientOriginal": "سبينيس ايجيبت"
   },
   {
     "id": "customer-42-40",
@@ -837,7 +915,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت استرادا مول",
+    "clientOriginal": "سبينيس ايجيبت"
   },
   {
     "id": "customer-43-41",
@@ -858,7 +938,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت مكسيم مول",
+    "clientOriginal": "سبينيس ايجيبت"
   },
   {
     "id": "customer-44-42",
@@ -879,7 +961,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت بيرل دى روبز",
+    "clientOriginal": "سبينيس ايجيبت"
   },
   {
     "id": "customer-45-43",
@@ -900,7 +984,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت المعادى",
+    "clientOriginal": "سبينيس ايجيبت"
   },
   {
     "id": "customer-46-44",
@@ -921,7 +1007,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت توكانو مدينة نصر",
+    "clientOriginal": "سبينيس ايجيبت"
   },
   {
     "id": "customer-47-45",
@@ -942,7 +1030,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت الشروق",
+    "clientOriginal": "سبينيس ايجيبت"
   },
   {
     "id": "customer-48-46",
@@ -963,7 +1053,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت ايناوكس مول",
+    "clientOriginal": "سبينيس ايجيبت"
   },
   {
     "id": "customer-49-47",
@@ -984,7 +1076,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت ارينا مول",
+    "clientOriginal": "سبينيس ايجيبت"
   },
   {
     "id": "customer-50-48",
@@ -1005,7 +1099,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت العبور",
+    "clientOriginal": "سبينيس ايجيبت"
   },
   {
     "id": "customer-51-49",
@@ -1026,7 +1122,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت مدينة نصر",
+    "clientOriginal": "سبينيس ايجيبت"
   },
   {
     "id": "customer-52-50",
@@ -1047,7 +1145,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت المهندسين جزيرة العرب",
+    "clientOriginal": "سبينيس ايجيبت"
   },
   {
     "id": "customer-53-51",
@@ -1068,7 +1168,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت الهرم",
+    "clientOriginal": "سبينيس ايجيبت"
   },
   {
     "id": "customer-54-52",
@@ -1089,7 +1191,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت مزار مول",
+    "clientOriginal": "سبينيس ايجيبت"
   },
   {
     "id": "customer-55-53",
@@ -1110,7 +1214,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت المهندسين شارع سوريا",
+    "clientOriginal": "سبينيس ايجيبت"
   },
   {
     "id": "customer-56-54",
@@ -1131,7 +1237,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت المقطم",
+    "clientOriginal": "سبينيس ايجيبت"
   },
   {
     "id": "customer-57-55",
@@ -1152,7 +1260,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت المنصورة",
+    "clientOriginal": "سبينيس ايجيبت"
   },
   {
     "id": "customer-58-56",
@@ -1173,7 +1283,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت النزهة",
+    "clientOriginal": "سبينيس ايجيبت"
   },
   {
     "id": "customer-59-57",
@@ -1194,7 +1306,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت النائب العام",
+    "clientOriginal": "سبينيس ايجيبت"
   },
   {
     "id": "customer-60-58",
@@ -1215,7 +1329,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت جراى وايت",
+    "clientOriginal": "سبينيس ايجيبت"
   },
   {
     "id": "customer-61-59",
@@ -1236,7 +1352,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت طنطا",
+    "clientOriginal": "سبينيس ايجيبت"
   },
   {
     "id": "customer-62-60",
@@ -1257,7 +1375,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت جراى بروجيكت",
+    "clientOriginal": "سبينيس ايجيبت"
   },
   {
     "id": "customer-63-61",
@@ -1278,7 +1398,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت فاليو",
+    "clientOriginal": "سبينيس ايجيبت فاليو"
   },
   {
     "id": "customer-64-62",
@@ -1299,7 +1421,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت فاليو مول العرب",
+    "clientOriginal": "سبينيس ايجيبت فاليو"
   },
   {
     "id": "customer-65-63",
@@ -1320,7 +1444,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت فاليو سيتى سكيب",
+    "clientOriginal": "سبينيس ايجيبت فاليو"
   },
   {
     "id": "customer-66-64",
@@ -1341,7 +1467,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت فاليو استرادا مول",
+    "clientOriginal": "سبينيس ايجيبت فاليو"
   },
   {
     "id": "customer-67-65",
@@ -1362,7 +1490,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت فاليو مكسيم مول",
+    "clientOriginal": "سبينيس ايجيبت فاليو"
   },
   {
     "id": "customer-68-66",
@@ -1383,7 +1513,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت فاليو بيرل دى روبز",
+    "clientOriginal": "سبينيس ايجيبت فاليو"
   },
   {
     "id": "customer-69-67",
@@ -1404,7 +1536,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت فاليو المعادى",
+    "clientOriginal": "سبينيس ايجيبت فاليو"
   },
   {
     "id": "customer-70-68",
@@ -1425,7 +1559,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت فاليو توكانو مدينة نصر",
+    "clientOriginal": "سبينيس ايجيبت فاليو"
   },
   {
     "id": "customer-71-69",
@@ -1446,7 +1582,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت فاليو الشروق",
+    "clientOriginal": "سبينيس ايجيبت فاليو"
   },
   {
     "id": "customer-72-70",
@@ -1467,7 +1605,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت فاليو ايناوكس مول",
+    "clientOriginal": "سبينيس ايجيبت فاليو"
   },
   {
     "id": "customer-73-71",
@@ -1488,7 +1628,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت فاليو ارينا مول",
+    "clientOriginal": "سبينيس ايجيبت فاليو"
   },
   {
     "id": "customer-74-72",
@@ -1509,7 +1651,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت فاليو العبور",
+    "clientOriginal": "سبينيس ايجيبت فاليو"
   },
   {
     "id": "customer-75-73",
@@ -1530,7 +1674,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت فاليو مدينة نصر",
+    "clientOriginal": "سبينيس ايجيبت فاليو"
   },
   {
     "id": "customer-76-74",
@@ -1551,7 +1697,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت فاليو المهندسين جزيرة العرب",
+    "clientOriginal": "سبينيس ايجيبت فاليو"
   },
   {
     "id": "customer-77-75",
@@ -1572,7 +1720,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت فاليو الهرم",
+    "clientOriginal": "سبينيس ايجيبت فاليو"
   },
   {
     "id": "customer-78-76",
@@ -1593,7 +1743,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت فاليو مزار مول",
+    "clientOriginal": "سبينيس ايجيبت فاليو"
   },
   {
     "id": "customer-79-77",
@@ -1614,7 +1766,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت فاليو المهندسين شارع سوريا",
+    "clientOriginal": "سبينيس ايجيبت فاليو"
   },
   {
     "id": "customer-80-78",
@@ -1635,7 +1789,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت فاليو المقطم",
+    "clientOriginal": "سبينيس ايجيبت فاليو"
   },
   {
     "id": "customer-81-79",
@@ -1656,7 +1812,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت فاليو المنصورة",
+    "clientOriginal": "سبينيس ايجيبت فاليو"
   },
   {
     "id": "customer-82-80",
@@ -1677,7 +1835,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01000016125",
     "email": "waleed.ibrahim@spinneys-egypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سبينيس ايجيبت فاليو النزهة",
+    "clientOriginal": "سبينيس ايجيبت فاليو"
   },
   {
     "id": "customer-83-81",
@@ -1698,7 +1858,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01119496405",
     "email": "hatem.shaheen@ramarket-eg.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "رع ماركت للتجارة والتوزيع",
+    "clientOriginal": "رع ماركت للتجارة والتوزيع"
   },
   {
     "id": "customer-84-82",
@@ -1719,7 +1881,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01119496405",
     "email": "hatem.shaheen@ramarket-eg.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "رع ماركت للتجارة والتوزيع الرحاب",
+    "clientOriginal": "رع ماركت للتجارة والتوزيع"
   },
   {
     "id": "customer-85-83",
@@ -1740,7 +1904,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01119496405",
     "email": "hatem.shaheen@ramarket-eg.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "رع ماركت للتجارة والتوزيع التجمع",
+    "clientOriginal": "رع ماركت للتجارة والتوزيع"
   },
   {
     "id": "customer-86-84",
@@ -1761,7 +1927,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01119496405",
     "email": "hatem.shaheen@ramarket-eg.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "رع ماركت للتجارة والتوزيع المعادى",
+    "clientOriginal": "رع ماركت للتجارة والتوزيع"
   },
   {
     "id": "customer-87-85",
@@ -1782,7 +1950,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01272636222",
     "email": "Randa.mohamed@stregis.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سانت ريجيس العاصمة الجديدة القاهرة The St Regis New Capital Cairo",
+    "clientOriginal": "سانت ريجيس العاصمة الجديدة القاهرة The St Regis New Capital Cairo"
   },
   {
     "id": "customer-88-86",
@@ -1803,7 +1973,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "0114 074 0088",
     "email": "Ahmed.G.Mahmoud@stregis.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "الديار القطريه للاستثمار العقارى والسياحى مصر",
+    "clientOriginal": "الديار القطريه للاستثمار العقارى والسياحى مصر"
   },
   {
     "id": "customer-89-87",
@@ -1824,7 +1996,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01155111438",
     "email": "accounts3912@luluegypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "اللولو للاسواق التجاريه الكبري اللولو للاسواق التجارية الكبرى al lulu hayper markets",
+    "clientOriginal": "اللولو للاسواق التجاريه الكبري اللولو للاسواق التجارية الكبرى al lulu hayper markets"
   },
   {
     "id": "customer-90-88",
@@ -1845,7 +2019,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01155111438",
     "email": "accounts3912@luluegypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "اللولو للاسواق التجاريه الكبري اللولو للاسواق التجارية الكبرى al lulu hayper markets بارك مول",
+    "clientOriginal": "اللولو للاسواق التجاريه الكبري اللولو للاسواق التجارية الكبرى al lulu hayper markets"
   },
   {
     "id": "customer-91-89",
@@ -1866,7 +2042,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01155111438",
     "email": "accounts3912@luluegypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "اللولو للاسواق التجاريه الكبري اللولو للاسواق التجارية الكبرى al lulu hayper markets تاون بلازا",
+    "clientOriginal": "اللولو للاسواق التجاريه الكبري اللولو للاسواق التجارية الكبرى al lulu hayper markets"
   },
   {
     "id": "customer-92-90",
@@ -1887,7 +2065,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01155111438",
     "email": "accounts3912@luluegypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "اللولو للاسواق التجاريه الكبري اللولو للاسواق التجارية الكبرى al lulu hayper markets وادى دجلة",
+    "clientOriginal": "اللولو للاسواق التجاريه الكبري اللولو للاسواق التجارية الكبرى al lulu hayper markets"
   },
   {
     "id": "customer-93-91",
@@ -1908,7 +2088,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01155111438",
     "email": "accounts3912@luluegypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "اللولو للاسواق التجاريه الكبري اللولو للاسواق التجارية الكبرى al lulu hayper markets التجمع الخامس",
+    "clientOriginal": "اللولو للاسواق التجاريه الكبري اللولو للاسواق التجارية الكبرى al lulu hayper markets"
   },
   {
     "id": "customer-94-92",
@@ -1929,7 +2111,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01155111438",
     "email": "accounts3912@luluegypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "اللولو للاسواق التجاريه الكبري اللولو للاسواق التجارية الكبرى al lulu hayper markets المحكمة",
+    "clientOriginal": "اللولو للاسواق التجاريه الكبري اللولو للاسواق التجارية الكبرى al lulu hayper markets"
   },
   {
     "id": "customer-95-93",
@@ -1950,7 +2134,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01010356031",
     "email": "tarek.elbahrawy@elfarmarket.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركه الفار التجاريه",
+    "clientOriginal": "شركه الفار التجاريه"
   },
   {
     "id": "customer-96-94",
@@ -1971,7 +2157,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01010356031",
     "email": "tarek.elbahrawy@elfarmarket.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركه الفار التجاريه التجمع التسعين الجنوبى",
+    "clientOriginal": "شركه الفار التجاريه"
   },
   {
     "id": "customer-97-95",
@@ -1992,7 +2180,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01010356031",
     "email": "tarek.elbahrawy@elfarmarket.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركه الفار التجاريه زايد",
+    "clientOriginal": "شركه الفار التجاريه"
   },
   {
     "id": "customer-98-96",
@@ -2013,7 +2203,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01010356031",
     "email": "tarek.elbahrawy@elfarmarket.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركه الفار التجاريه مدينتى",
+    "clientOriginal": "شركه الفار التجاريه"
   },
   {
     "id": "customer-99-97",
@@ -2034,7 +2226,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01010356031",
     "email": "tarek.elbahrawy@elfarmarket.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركه الفار التجاريه ارابيلا بلازا",
+    "clientOriginal": "شركه الفار التجاريه"
   },
   {
     "id": "customer-100-98",
@@ -2055,7 +2249,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01010356031",
     "email": "tarek.elbahrawy@elfarmarket.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركه الفار التجاريه الميرغنى",
+    "clientOriginal": "شركه الفار التجاريه"
   },
   {
     "id": "customer-101-99",
@@ -2076,7 +2272,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01010356031",
     "email": "tarek.elbahrawy@elfarmarket.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركه الفار التجاريه ميفيدا",
+    "clientOriginal": "شركه الفار التجاريه"
   },
   {
     "id": "customer-102-100",
@@ -2097,7 +2295,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01010356031",
     "email": "tarek.elbahrawy@elfarmarket.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركه الفار التجاريه ستريب زون",
+    "clientOriginal": "شركه الفار التجاريه"
   },
   {
     "id": "customer-103-101",
@@ -2118,7 +2318,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01010356031",
     "email": "tarek.elbahrawy@elfarmarket.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركه الفار التجاريه الساحل الشمالى",
+    "clientOriginal": "شركه الفار التجاريه"
   },
   {
     "id": "customer-104-102",
@@ -2139,7 +2341,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01010356031",
     "email": "tarek.elbahrawy@elfarmarket.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركه الفار التجاريه شيراتون",
+    "clientOriginal": "شركه الفار التجاريه"
   },
   {
     "id": "customer-105-103",
@@ -2160,7 +2364,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01010356031",
     "email": "tarek.elbahrawy@elfarmarket.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركه الفار التجاريه التجمع التسعين الشمالى",
+    "clientOriginal": "شركه الفار التجاريه"
   },
   {
     "id": "customer-106-104",
@@ -2181,7 +2387,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01010356031",
     "email": "tarek.elbahrawy@elfarmarket.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركه الفار التجاريه المهندسين",
+    "clientOriginal": "شركه الفار التجاريه"
   },
   {
     "id": "customer-107-105",
@@ -2202,7 +2410,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01151396544",
     "email": "doaa.abdelbaset@goodsmartegypt.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركه جودز مارت",
+    "clientOriginal": "شركه جودز مارت"
   },
   {
     "id": "customer-108-106",
@@ -2223,7 +2433,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01022226476",
     "email": "Wahid.salman@kazyon.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "توفير للمواد الغذائيه كازيون",
+    "clientOriginal": "توفير للمواد الغذائيه كازيون"
   },
   {
     "id": "customer-109-107",
@@ -2244,7 +2456,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01022226476",
     "email": "Wahid.salman@kazyon.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "توفير للمواد الغذائيه كازيون اسيوط",
+    "clientOriginal": "توفير للمواد الغذائيه كازيون"
   },
   {
     "id": "customer-110-108",
@@ -2265,7 +2479,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01022226476",
     "email": "Wahid.salman@kazyon.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "توفير للمواد الغذائيه كازيون العاشر",
+    "clientOriginal": "توفير للمواد الغذائيه كازيون"
   },
   {
     "id": "customer-111-109",
@@ -2286,7 +2502,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "0100 686 0310‎",
     "email": "mahmoud.farahat@marriott.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "فندق ماريوت مينا هاوس",
+    "clientOriginal": "فندق ماريوت مينا هاوس"
   },
   {
     "id": "customer-112-110",
@@ -2307,7 +2525,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01118549595",
     "email": "hani-kamal@suppercenter.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سوبر سنتر لتجاره وتوزيع المواد الغذائيهSuper Center",
+    "clientOriginal": "سوبر سنتر لتجاره وتوزيع المواد الغذائيهSuper Center"
   },
   {
     "id": "customer-113-111",
@@ -2328,7 +2548,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01009701267",
     "email": "karim.rady@radissonblu.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "آفاق للاستثمار السياحي",
+    "clientOriginal": "آفاق للاستثمار السياحي"
   },
   {
     "id": "customer-114-112",
@@ -2349,7 +2571,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01229432167",
     "email": "Samah.abdelrahman@zahranmarket.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "زهران ماركت ش م م",
+    "clientOriginal": "زهران ماركت ش م م"
   },
   {
     "id": "customer-115-113",
@@ -2370,7 +2594,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "0122 943 2167",
     "email": "Samah.abdelrahman@zahranmarket.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "زهران ماركت ش م م التجمع",
+    "clientOriginal": "زهران ماركت ش م م"
   },
   {
     "id": "customer-116-114",
@@ -2391,7 +2617,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "0122 943 2167",
     "email": "Samah.abdelrahman@zahranmarket.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "زهران ماركت ش م م العجمى",
+    "clientOriginal": "زهران ماركت ش م م"
   },
   {
     "id": "customer-117-115",
@@ -2412,7 +2640,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "0122 943 2167",
     "email": "Samah.abdelrahman@zahranmarket.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "زهران ماركت ش م م الفراعنة",
+    "clientOriginal": "زهران ماركت ش م م"
   },
   {
     "id": "customer-118-116",
@@ -2433,7 +2663,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "0122 943 2167",
     "email": "Samah.abdelrahman@zahranmarket.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "زهران ماركت ش م م المعمورة",
+    "clientOriginal": "زهران ماركت ش م م"
   },
   {
     "id": "customer-119-117",
@@ -2454,7 +2686,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "0122 943 2167",
     "email": "Samah.abdelrahman@zahranmarket.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "زهران ماركت ش م م المنصورة",
+    "clientOriginal": "زهران ماركت ش م م"
   },
   {
     "id": "customer-120-118",
@@ -2475,7 +2709,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "0122 943 2167",
     "email": "Samah.abdelrahman@zahranmarket.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "زهران ماركت ش م م زايد",
+    "clientOriginal": "زهران ماركت ش م م"
   },
   {
     "id": "customer-121-119",
@@ -2496,7 +2732,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "0122 943 2167",
     "email": "Samah.abdelrahman@zahranmarket.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "زهران ماركت ش م م زيزينيا",
+    "clientOriginal": "زهران ماركت ش م م"
   },
   {
     "id": "customer-122-120",
@@ -2517,7 +2755,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "0122 943 2167",
     "email": "Samah.abdelrahman@zahranmarket.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "زهران ماركت ش م م سموحة",
+    "clientOriginal": "زهران ماركت ش م م"
   },
   {
     "id": "customer-123-121",
@@ -2538,7 +2778,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "0122 943 2167",
     "email": "Samah.abdelrahman@zahranmarket.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "زهران ماركت ش م م شارع سوريا",
+    "clientOriginal": "زهران ماركت ش م م"
   },
   {
     "id": "customer-124-122",
@@ -2559,7 +2801,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "0122 943 2167",
     "email": "Samah.abdelrahman@zahranmarket.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "زهران ماركت ش م م بريفادو مدينتى",
+    "clientOriginal": "زهران ماركت ش م م"
   },
   {
     "id": "customer-125-123",
@@ -2580,7 +2824,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-126-124",
@@ -2601,7 +2847,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس الواحات",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-127-125",
@@ -2622,7 +2870,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس مول مصر",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-128-126",
@@ -2643,7 +2893,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس الاهرام",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-129-127",
@@ -2664,7 +2916,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس البارون",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-130-128",
@@ -2685,7 +2939,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس السلام",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-131-129",
@@ -2706,7 +2962,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس الشروق",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-132-130",
@@ -2727,7 +2985,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس العاشر",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-133-131",
@@ -2748,7 +3008,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس العبور",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-134-132",
@@ -2769,7 +3031,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس العجمى",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-135-133",
@@ -2790,7 +3054,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس الماظة",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-136-134",
@@ -2811,7 +3077,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس المعادى",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-137-135",
@@ -2832,7 +3100,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس داندى مول",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-138-136",
@@ -2853,7 +3123,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس داون تاون",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-139-137",
@@ -2874,7 +3146,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس  سايلو 15 مايو",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-140-138",
@@ -2895,7 +3169,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس  سرايا القبة",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-141-139",
@@ -2916,7 +3192,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس سوبيكو 6 اكتوبر",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-142-140",
@@ -2937,7 +3215,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس سوبيكو الازهر",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-143-141",
@@ -2958,7 +3238,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس سوبيكو الاسمرات",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-144-142",
@@ -2979,7 +3261,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس سوبيكو الزقازيق",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-145-143",
@@ -3000,7 +3284,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس سوبيكو السلام",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-146-144",
@@ -3021,7 +3307,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس سوبيكو السيوف",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-147-145",
@@ -3042,7 +3330,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس سوبيكو العباسية",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-148-146",
@@ -3063,7 +3353,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس سوبيكو العجمى",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-149-147",
@@ -3084,7 +3376,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس سوبيكو العمرانية",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-150-148",
@@ -3105,7 +3399,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس سوبيكو الفيوم",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-151-149",
@@ -3126,7 +3422,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس سوبيكو الملتقى",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-152-150",
@@ -3147,7 +3445,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس سوبيكو المنصورة",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-153-151",
@@ -3168,7 +3468,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس سوبيكو النزهة",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-154-152",
@@ -3189,7 +3491,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس سوبيكو النعام",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-155-153",
@@ -3210,7 +3514,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس سوبيكو الوايلى",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-156-154",
@@ -3231,7 +3537,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس سوبيكو امبابة",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-157-155",
@@ -3252,7 +3560,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس سوبيكو بدر",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-158-156",
@@ -3273,7 +3583,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس سوبيكو حلوان",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-159-157",
@@ -3294,7 +3606,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس سوبيكو زكى رجب",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-160-158",
@@ -3315,7 +3629,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس سوبيكو سنترومول دمنهور",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-161-159",
@@ -3336,7 +3652,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس سوبيكو سوق المدينة",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-162-160",
@@ -3357,7 +3675,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس سوبيكو سويتش",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-163-161",
@@ -3378,7 +3698,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس سوبيكو سيتى مول",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-164-162",
@@ -3399,7 +3721,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس سوبيكو شبين الكوم",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-165-163",
@@ -3420,7 +3744,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس سوبيكو شنزوابى",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-166-164",
@@ -3441,7 +3767,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس سوبيكو طرة",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-167-165",
@@ -3462,7 +3790,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس سوبيكو قويسنا",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-168-166",
@@ -3483,7 +3813,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس سوبيكو ميجا مول",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-169-167",
@@ -3504,7 +3836,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس سوبيكو وينجت",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-170-168",
@@ -3525,7 +3859,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس  سيتى سنتر اسكندرية",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-171-169",
@@ -3546,7 +3882,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس  سيتى  سنتر الماظة",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-172-170",
@@ -3567,7 +3905,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس سيتى لايت",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-173-171",
@@ -3588,7 +3928,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس صلاح سالم",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-174-172",
@@ -3609,7 +3951,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس العروبة مول اسكندرية",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-175-173",
@@ -3630,7 +3974,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس كايرو فيستيفال",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-176-174",
@@ -3651,7 +3997,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس مدينتى",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-177-175",
@@ -3672,7 +4020,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس مهدى عرفة",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-178-176",
@@ -3693,7 +4043,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس ميجا مول",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-179-177",
@@ -3714,7 +4066,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس سوبيكو القناطر",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-180-178",
@@ -3735,7 +4089,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس سوبيكو المطار",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-181-179",
@@ -3756,7 +4112,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس سوبيكو اهالينا مول",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-182-180",
@@ -3777,7 +4135,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس سوبيكو سنجر شبرا",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-183-181",
@@ -3798,7 +4158,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس سوبيكو الاهرام",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-184-182",
@@ -3819,7 +4181,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس سوبيكو سندس",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-185-183",
@@ -3840,7 +4204,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس سوبيكو شبرا الخيمة",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-186-184",
@@ -3861,7 +4227,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس اعمار",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-187-185",
@@ -3882,7 +4250,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس التجمع",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-188-186",
@@ -3903,7 +4273,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس  سوبيكو سيراميكا كليوباترا",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-189-187",
@@ -3924,7 +4296,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01113585555",
     "email": "eselsayed@mafcarrefourcom",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ماف لتجهيز واداره الهايبر ماركتس مصر الجديدة",
+    "clientOriginal": "ماف لتجهيز واداره الهايبر ماركتس"
   },
   {
     "id": "customer-190-188",
@@ -3945,7 +4319,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01009015580",
     "email": "Mohamed.Tharwat@awladragab.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركة اولاد رجب للتجاره",
+    "clientOriginal": "شركة اولاد رجب للتجاره"
   },
   {
     "id": "customer-191-189",
@@ -3966,7 +4342,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01009015580",
     "email": "Mohamed.Tharwat@awladragab.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركة اولاد رجب للتجاره احمد فخرى",
+    "clientOriginal": "شركة اولاد رجب للتجاره"
   },
   {
     "id": "customer-192-190",
@@ -3987,7 +4365,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01009015580",
     "email": "Mohamed.Tharwat@awladragab.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركة اولاد رجب للتجاره التجنيد",
+    "clientOriginal": "شركة اولاد رجب للتجاره"
   },
   {
     "id": "customer-193-191",
@@ -4008,7 +4388,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01009015580",
     "email": "Mohamed.Tharwat@awladragab.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركة اولاد رجب للتجاره الجولف",
+    "clientOriginal": "شركة اولاد رجب للتجاره"
   },
   {
     "id": "customer-194-192",
@@ -4029,7 +4411,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01009015580",
     "email": "Mohamed.Tharwat@awladragab.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركة اولاد رجب للتجاره الظاهر",
+    "clientOriginal": "شركة اولاد رجب للتجاره"
   },
   {
     "id": "customer-195-193",
@@ -4050,7 +4434,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01009015580",
     "email": "Mohamed.Tharwat@awladragab.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركة اولاد رجب للتجاره العلمين",
+    "clientOriginal": "شركة اولاد رجب للتجاره"
   },
   {
     "id": "customer-196-194",
@@ -4071,7 +4457,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01009015580",
     "email": "Mohamed.Tharwat@awladragab.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركة اولاد رجب للتجاره القناطر",
+    "clientOriginal": "شركة اولاد رجب للتجاره"
   },
   {
     "id": "customer-197-195",
@@ -4092,7 +4480,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01009015580",
     "email": "Mohamed.Tharwat@awladragab.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركة اولاد رجب للتجاره المعادى",
+    "clientOriginal": "شركة اولاد رجب للتجاره"
   },
   {
     "id": "customer-198-196",
@@ -4113,7 +4503,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01009015580",
     "email": "Mohamed.Tharwat@awladragab.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركة اولاد رجب للتجاره حدائق حلوان",
+    "clientOriginal": "شركة اولاد رجب للتجاره"
   },
   {
     "id": "customer-199-197",
@@ -4134,7 +4526,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01009015580",
     "email": "Mohamed.Tharwat@awladragab.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركة اولاد رجب للتجاره بنى سويف",
+    "clientOriginal": "شركة اولاد رجب للتجاره"
   },
   {
     "id": "customer-200-198",
@@ -4155,7 +4549,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01013042344",
     "email": "gemayay@amazon.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركه سوق دوت كوم للتجاره الالكترونيه",
+    "clientOriginal": "شركه سوق دوت كوم للتجاره الالكترونيه"
   },
   {
     "id": "customer-201-199",
@@ -4176,7 +4572,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01013042344",
     "email": "gemayay@amazon.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركه سوق دوت كوم للتجاره الالكترونيه QCD4",
+    "clientOriginal": "شركه سوق دوت كوم للتجاره الالكترونيه"
   },
   {
     "id": "customer-202-200",
@@ -4197,7 +4595,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01013042344",
     "email": "gemayay@amazon.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركه سوق دوت كوم للتجاره الالكترونيه QCA1",
+    "clientOriginal": "شركه سوق دوت كوم للتجاره الالكترونيه"
   },
   {
     "id": "customer-203-201",
@@ -4218,7 +4618,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01013042344",
     "email": "gemayay@amazon.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركه سوق دوت كوم للتجاره الالكترونيه QCA5",
+    "clientOriginal": "شركه سوق دوت كوم للتجاره الالكترونيه"
   },
   {
     "id": "customer-204-202",
@@ -4239,7 +4641,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01013042344",
     "email": "gemayay@amazon.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركه سوق دوت كوم للتجاره الالكترونيه QCA7",
+    "clientOriginal": "شركه سوق دوت كوم للتجاره الالكترونيه"
   },
   {
     "id": "customer-205-203",
@@ -4260,7 +4664,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01013042344",
     "email": "gemayay@amazon.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركه سوق دوت كوم للتجاره الالكترونيه QCA4",
+    "clientOriginal": "شركه سوق دوت كوم للتجاره الالكترونيه"
   },
   {
     "id": "customer-206-204",
@@ -4281,7 +4687,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01013042344",
     "email": "gemayay@amazon.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركه سوق دوت كوم للتجاره الالكترونيه QGA3",
+    "clientOriginal": "شركه سوق دوت كوم للتجاره الالكترونيه"
   },
   {
     "id": "customer-207-205",
@@ -4302,7 +4710,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01013042344",
     "email": "gemayay@amazon.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركه سوق دوت كوم للتجاره الالكترونيه QCA2",
+    "clientOriginal": "شركه سوق دوت كوم للتجاره الالكترونيه"
   },
   {
     "id": "customer-208-206",
@@ -4323,7 +4733,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01013042344",
     "email": "gemayay@amazon.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركه سوق دوت كوم للتجاره الالكترونيه QCA6",
+    "clientOriginal": "شركه سوق دوت كوم للتجاره الالكترونيه"
   },
   {
     "id": "customer-209-207",
@@ -4344,7 +4756,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01013042344",
     "email": "gemayay@amazon.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركه سوق دوت كوم للتجاره الالكترونيه QCA8",
+    "clientOriginal": "شركه سوق دوت كوم للتجاره الالكترونيه"
   },
   {
     "id": "customer-210-208",
@@ -4365,7 +4779,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01013042344",
     "email": "gemayay@amazon.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركه سوق دوت كوم للتجاره الالكترونيه QGA4",
+    "clientOriginal": "شركه سوق دوت كوم للتجاره الالكترونيه"
   },
   {
     "id": "customer-211-209",
@@ -4386,7 +4802,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01013042344",
     "email": "gemayay@amazon.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركه سوق دوت كوم للتجاره الالكترونيه QCA3",
+    "clientOriginal": "شركه سوق دوت كوم للتجاره الالكترونيه"
   },
   {
     "id": "customer-212-210",
@@ -4407,7 +4825,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01013042344",
     "email": "gemayay@amazon.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركه سوق دوت كوم للتجاره الالكترونيه QCD3",
+    "clientOriginal": "شركه سوق دوت كوم للتجاره الالكترونيه"
   },
   {
     "id": "customer-213-211",
@@ -4428,7 +4848,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01013042344",
     "email": "gemayay@amazon.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركه سوق دوت كوم للتجاره الالكترونيه QCC6",
+    "clientOriginal": "شركه سوق دوت كوم للتجاره الالكترونيه"
   },
   {
     "id": "customer-214-212",
@@ -4449,7 +4871,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01013042344",
     "email": "gemayay@amazon.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركه سوق دوت كوم للتجاره الالكترونيه QGA1",
+    "clientOriginal": "شركه سوق دوت كوم للتجاره الالكترونيه"
   },
   {
     "id": "customer-215-213",
@@ -4470,7 +4894,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01013042344",
     "email": "gemayay@amazon.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "شركه سوق دوت كوم للتجاره الالكترونيه QCC8",
+    "clientOriginal": "شركه سوق دوت كوم للتجاره الالكترونيه"
   },
   {
     "id": "customer-216-214",
@@ -4491,7 +4917,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01277556694",
     "email": "ahmed.ragab@theoak-eg.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "نيو رابيا للتجاره والتوزيع مصر الجديدة",
+    "clientOriginal": "نيو رابيا للتجاره والتوزيع"
   },
   {
     "id": "customer-217-215",
@@ -4512,7 +4940,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "01277556694",
     "email": "ahmed.ragab@theoak-eg.com",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "نيو رابيا للتجاره والتوزيع البكرى",
+    "clientOriginal": "نيو رابيا للتجاره والتوزيع"
   },
   {
     "id": "Sheet1-3-216",
@@ -4533,7 +4963,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "",
     "email": "",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "مشروع  الهايد بارك",
+    "clientOriginal": "مشروع  الهايد بارك"
   },
   {
     "id": "Sheet1-4-217",
@@ -4554,7 +4986,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "",
     "email": "",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "مشروع المسجد",
+    "clientOriginal": "شركة تمار هوم"
   },
   {
     "id": "Sheet1-5-218",
@@ -4575,7 +5009,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "",
     "email": "",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "مشروع اليخت",
+    "clientOriginal": "شركة تمار هوم"
   },
   {
     "id": "Sheet1-6-219",
@@ -4596,7 +5032,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "",
     "email": "",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "تدريب المقاولين العرب",
+    "clientOriginal": "شركة تمار هوم"
   },
   {
     "id": "Sheet1-7-220",
@@ -4617,7 +5055,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "",
     "email": "",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "مشروع ريتال رؤية",
+    "clientOriginal": "شركة تمار هوم"
   },
   {
     "id": "Sheet1-8-221",
@@ -4638,7 +5078,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "",
     "email": "",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "مشروع  ZED East Infrastructure Project",
+    "clientOriginal": "شركة تمار هوم"
   },
   {
     "id": "Sheet1-9-222",
@@ -4659,7 +5101,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "",
     "email": "",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "ريتال رايز عقد فرعى",
+    "clientOriginal": "شركة تمار هوم"
   },
   {
     "id": "Sheet1-10-223",
@@ -4680,7 +5124,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "",
     "email": "",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "AUH Cargo Airport",
+    "clientOriginal": "شركة MEIMHARDT"
   },
   {
     "id": "Sheet1-11-224",
@@ -4701,7 +5147,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "",
     "email": "",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "Hamat Mall",
+    "clientOriginal": "شركة MEIMHARDT"
   },
   {
     "id": "Sheet1-12-225",
@@ -4722,7 +5170,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "",
     "email": "",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "اب تاون كايرو",
+    "clientOriginal": "الشركة الهندسية للانشاء و التعمير"
   },
   {
     "id": "Sheet1-13-226",
@@ -4743,7 +5193,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "",
     "email": "",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "مشروع  ZED East Infrastructure Project",
+    "clientOriginal": "شكة جاما للانشاءات طرق"
   },
   {
     "id": "Sheet1-14-227",
@@ -4764,7 +5216,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "",
     "email": "",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "مشروع لينك مصر",
+    "clientOriginal": "شكة جاما للانشاءات طرق"
   },
   {
     "id": "Sheet1-15-228",
@@ -4785,7 +5239,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "",
     "email": "",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "مشروع نيوم",
+    "clientOriginal": "شكة جاما للانشاءات طرق"
   },
   {
     "id": "Sheet1-16-229",
@@ -4806,7 +5262,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "",
     "email": "",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "فور سيزون",
+    "clientOriginal": "شكة جاما للانشاءات طرق"
   },
   {
     "id": "Sheet1-17-230",
@@ -4827,7 +5285,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "",
     "email": "",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "six senses",
+    "clientOriginal": "شكة جاما للانشاءات طرق"
   },
   {
     "id": "Sheet1-18-231",
@@ -4848,7 +5308,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "",
     "email": "",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "روز وود",
+    "clientOriginal": "اتش اية للانشاءات"
   },
   {
     "id": "Sheet1-19-232",
@@ -4869,7 +5331,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "",
     "email": "",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "لينك مصر",
+    "clientOriginal": "شركة تى كمبيوترز"
   },
   {
     "id": "Sheet1-20-233",
@@ -4890,7 +5354,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "",
     "email": "",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "فور سيزون السعودية",
+    "clientOriginal": "شركة تالنت الهندسية"
   },
   {
     "id": "Sheet1-21-234",
@@ -4911,7 +5377,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "",
     "email": "",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "فور سيزون السعودية- كوردينيتور",
+    "clientOriginal": "شركة تالنت الهندسية"
   },
   {
     "id": "Sheet1-22-235",
@@ -4932,7 +5400,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "",
     "email": "",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "نيو جيزة",
+    "clientOriginal": "الشركة الهندسية للانشاء و التعمير"
   },
   {
     "id": "Sheet1-23-236",
@@ -4953,7 +5423,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "",
     "email": "",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "وادى صفار",
+    "clientOriginal": "السمان جروب"
   },
   {
     "id": "Sheet1-24-237",
@@ -4974,7 +5446,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "",
     "email": "",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "روز وود",
+    "clientOriginal": "تى كمبيوترز"
   },
   {
     "id": "Sheet1-25-238",
@@ -4995,7 +5469,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "",
     "email": "",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "تدريب ازهرة",
+    "clientOriginal": "شركة ازهر"
   },
   {
     "id": "Sheet1-26-239",
@@ -5016,7 +5492,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "",
     "email": "",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "كوردينيتور",
+    "clientOriginal": "شركة قبانى"
   },
   {
     "id": "Sheet1-27-240",
@@ -5037,7 +5515,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "",
     "email": "",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سدرة للبنية التحتية",
+    "clientOriginal": "شركة روشن"
   },
   {
     "id": "Sheet1-28-241",
@@ -5058,7 +5538,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "",
     "email": "",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "سدرة",
+    "clientOriginal": "شركة روشن"
   },
   {
     "id": "Sheet1-29-242",
@@ -5079,7 +5561,9 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "",
     "email": "",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "MH 3 مارينا هوتل",
+    "clientOriginal": "اتش اية للانشاءات"
   },
   {
     "id": "Sheet1-30-243",
@@ -5100,6 +5584,119 @@ window.INITIAL_CUSTOMERS = [
     "mobile": "",
     "email": "",
     "website": "",
-    "notes": ""
+    "notes": "",
+    "branchFullName": "البوانى(المدية المنورة)",
+    "clientOriginal": "البوانى"
+  }
+];
+
+window.TAX_REGISTRY = [
+  {
+    "name": "وكالة المنصورة",
+    "taxId": "313450196"
+  },
+  {
+    "name": "بندة",
+    "taxId": "479918899"
+  },
+  {
+    "name": "أوسكار جراند ستورز",
+    "taxId": "200139495"
+  },
+  {
+    "name": "جيان ماركت / رع",
+    "taxId": "679752358"
+  },
+  {
+    "name": "سبينيس",
+    "taxId": "215533240"
+  },
+  {
+    "name": "اللولو هايبر ماركت",
+    "taxId": "447599798"
+  },
+  {
+    "name": "سوان ماركت",
+    "taxId": "718794168"
+  },
+  {
+    "name": "بيم",
+    "taxId": "413344312"
+  },
+  {
+    "name": "جمعية الحصري",
+    "taxId": "266853943"
+  },
+  {
+    "name": "الفار",
+    "taxId": "100535607"
+  },
+  {
+    "name": "فندق هيلتون هليوبلس",
+    "taxId": "100356672"
+  },
+  {
+    "name": "جودز مارت",
+    "taxId": "535966474"
+  },
+  {
+    "name": "فندق سانت ريجيس العاصمة",
+    "taxId": "655468048"
+  },
+  {
+    "name": "أوكازيون",
+    "taxId": "474218643"
+  },
+  {
+    "name": "فندق ماريوت مينا هاوس",
+    "taxId": "735475547"
+  },
+  {
+    "name": "نون",
+    "taxId": "730555992"
+  },
+  {
+    "name": "لوما",
+    "taxId": "416130453"
+  },
+  {
+    "name": "برينجو",
+    "taxId": "100497780"
+  },
+  {
+    "name": "بان كيكس فودز",
+    "taxId": "635919516"
+  },
+  {
+    "name": "فندق سانت ريجيس كورنيش النيل",
+    "taxId": "239892747"
+  },
+  {
+    "name": "سوبر سنتر",
+    "taxId": "757864252"
+  },
+  {
+    "name": "زهران",
+    "taxId": "415831687"
+  },
+  {
+    "name": "فندق رايدسون بلو شيراتون",
+    "taxId": "274328453"
+  },
+  {
+    "name": "كارفور",
+    "taxId": "200185128"
+  },
+  {
+    "name": "أولاد رجب",
+    "taxId": "244946868"
+  },
+  {
+    "name": "أمازون",
+    "taxId": "340035072"
+  },
+  {
+    "name": "هايبر رومين",
+    "taxId": "723799210"
   }
 ];

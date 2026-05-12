@@ -3,153 +3,141 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>OVAL | إدارة العملاء والفروع</title>
+  <title>OVAL | إدارة العملاء والفروع الذكية</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <section id="loginScreen" class="login-screen">
     <div class="login-card">
-      <div class="login-logo">OV</div>
-      <h1>نظام عملاء وفروع OVAL</h1>
-      <p>دخول محمي للبيانات الداخلية</p>
-      <form id="loginForm" class="login-form">
-        <label>كلمة السر
-          <input id="passwordInput" type="password" autocomplete="current-password" placeholder="اكتب كلمة السر" required />
-        </label>
-        <button class="btn primary" type="submit">دخول</button>
-      </form>
-      <small>تنبيه: الحماية هنا مناسبة للتشغيل المحلي، وليست بديلًا عن سيرفر وصلاحيات حقيقية.</small>
+      <div class="brand-logo">OV</div>
+      <h1>إدارة العملاء والفروع</h1>
+      <p>بيانات خاصة بشركة OVAL — دخول آمن محليًا</p>
+      <input id="passwordInput" type="password" placeholder="كلمة السر" autocomplete="current-password" />
+      <button id="loginBtn" class="btn primary full">دخول</button>
+      <small id="loginMsg"></small>
     </div>
   </section>
 
-  <div id="appShell" class="app-shell locked" aria-hidden="true">
-    <header class="app-header">
-      <div class="brand">
-        <div class="logo">OV</div>
+  <main id="app" class="app hidden">
+    <aside class="side">
+      <div class="side-brand"><span>OV</span><div><b>OVAL</b><small>Smart Customers CRM</small></div></div>
+      <nav>
+        <button class="nav-btn active" data-tab="dashboard">لوحة التحليل</button>
+        <button class="nav-btn" data-tab="customers">العملاء والفروع</button>
+        <button class="nav-btn" data-tab="branches">كل الفروع</button>
+        <button class="nav-btn" data-tab="registry">السجل الضريبي</button>
+        <button class="nav-btn" data-tab="quality">جودة البيانات</button>
+        <button class="nav-btn" data-tab="audit">الحركات والسلة</button>
+      </nav>
+      <div class="side-actions">
+        <button class="btn primary" onclick="openEditor()">+ إضافة فرع/عميل</button>
+        <button class="btn" onclick="exportCSV()">تصدير CSV</button>
+        <button class="btn" onclick="backupJSON()">نسخ احتياطي JSON</button>
+        <label class="btn file">استيراد JSON<input type="file" id="importFile" accept="application/json" hidden></label>
+        <button class="btn danger light" onclick="logout()">قفل</button>
+      </div>
+    </aside>
+
+    <section class="content">
+      <header class="topbar">
         <div>
           <h1>إدارة العملاء والفروع</h1>
-          <p>لوحة تشغيل وتحليل لفروع العملاء — محفوظة محليًا ومشفرة بشكل ردعي</p>
+          <p>كل عميل متقسم بفروعه، بأسماء الفروع كاملة، مع تحليل ذكي وسجل تعديلات.</p>
         </div>
-      </div>
-      <div class="header-actions">
-        <button id="addBtn" class="btn primary">+ إضافة فرع/عميل</button>
-        <button id="auditBtn" class="btn">سجل الحركات</button>
-        <button id="trashBtn" class="btn">سلة المحذوفات</button>
-        <button id="backupBtn" class="btn">نسخ احتياطي JSON</button>
-        <label class="btn file-btn">استيراد JSON<input id="importInput" type="file" accept="application/json" /></label>
-        <button id="lockBtn" class="btn danger-soft">قفل</button>
-      </div>
-    </header>
+        <div class="tools">
+          <button class="btn" onclick="copyManagementText()">نسخ ملخص للإدارة</button>
+          <button class="btn" onclick="window.print()">طباعة</button>
+        </div>
+      </header>
 
-    <main class="container">
-      <section class="hero-grid">
-        <div class="hero-card wide">
-          <span class="eyebrow">تحليل عام</span>
-          <h2>كل عميل متقسم بفروعه، مع إجماليات وتحكم كامل.</h2>
-          <p>بحث سريع، فلترة، تعديل وحذف آمن ونسخ بيانات، وسجل حركات ونسخ احتياطي واسترجاع.</p>
-        </div>
-        <div class="kpi"><span>إجمالي العملاء</span><strong id="totalClients">0</strong></div>
-        <div class="kpi"><span>إجمالي الفروع</span><strong id="totalBranches">0</strong></div>
-        <div class="kpi"><span>المحافظات</span><strong id="totalStates">0</strong></div>
-        <div class="kpi"><span>بيانات تواصل</span><strong id="totalContacts">0</strong></div>
-        <div class="kpi"><span>بيانات ناقصة</span><strong id="totalMissing">0</strong></div>
-      </section>
-
-      <section class="toolbar card">
-        <div class="search-wrap">
-          <input id="searchInput" type="search" placeholder="ابحث باسم العميل، الفرع، المدينة، الرقم، الإيميل..." />
-        </div>
+      <section class="command">
+        <input id="search" placeholder="ابحث باسم العميل، الفرع، المدينة، المحافظة، الرقم الضريبي، الهاتف..." />
+        <select id="clientFilter"><option value="">كل العملاء</option></select>
         <select id="stateFilter"><option value="">كل المحافظات</option></select>
-        <select id="cityFilter"><option value="">كل المدن</option></select>
-        <select id="termsFilter"><option value="">كل شروط الدفع</option></select>
-        <select id="sourceFilter"><option value="">كل الشيتات</option></select>
-        <select id="completenessFilter"><option value="">كل البيانات</option><option value="complete">بيانات كاملة نسبيًا</option><option value="missingContact">ناقص تواصل</option><option value="missingAddress">ناقص عنوان</option></select>
-        <button id="clearFilters" class="btn ghost">مسح الفلاتر</button>
+        <select id="qualityFilter">
+          <option value="">كل الحالات</option>
+          <option value="complete">مكتمل</option>
+          <option value="missingContact">ناقص تواصل</option>
+          <option value="missingAddress">ناقص عنوان</option>
+          <option value="missingTax">ناقص رقم ضريبي</option>
+        </select>
+        <button class="btn" onclick="clearFilters()">مسح الفلاتر</button>
       </section>
 
-      <section class="analysis-grid">
-        <div class="card">
-          <div class="section-title"><h3>أكبر العملاء حسب عدد الفروع</h3><span id="topCount"></span></div>
-          <div id="topClientsChart" class="bars"></div>
+      <section id="dashboard" class="tab active">
+        <div class="kpis">
+          <div class="kpi"><span>إجمالي العملاء</span><b id="totalClients">0</b><small>بعد التجميع الذكي</small></div>
+          <div class="kpi"><span>إجمالي الفروع/السجلات</span><b id="totalBranches">0</b><small>كل الفروع بالأسماء الكاملة</small></div>
+          <div class="kpi"><span>المحافظات</span><b id="totalStates">0</b><small>توزيع جغرافي</small></div>
+          <div class="kpi"><span>بيانات تواصل</span><b id="withContact">0</b><small>هاتف / موبايل / إيميل</small></div>
+          <div class="kpi warning"><span>بيانات ناقصة</span><b id="missingData">0</b><small>محتاج مراجعة</small></div>
         </div>
-        <div class="card">
-          <div class="section-title"><h3>توزيع المحافظات</h3><span id="stateCount"></span></div>
-          <div id="statesChart" class="chips-chart"></div>
+        <div class="grid two">
+          <article class="panel"><div class="panel-head"><h2>أكبر العملاء حسب عدد الفروع</h2><small id="topClientsCount"></small></div><div id="topClientsChart" class="bars"></div></article>
+          <article class="panel"><div class="panel-head"><h2>توزيع المحافظات</h2><small id="statesCount"></small></div><div id="statesChart" class="bars"></div></article>
         </div>
-        <div class="card full-card">
-          <div class="section-title"><h3>تحليل جودة البيانات</h3><span id="qualityCount"></span></div>
-          <div id="qualityPanel" class="quality-grid"></div>
+        <div class="grid two">
+          <article class="panel"><div class="panel-head"><h2>تنبيهات ذكية</h2><small>أهم الملاحظات تلقائيًا</small></div><div id="smartAlerts" class="alerts"></div></article>
+          <article class="panel"><div class="panel-head"><h2>ملخص سريع للإدارة</h2><small>جاهز للنسخ</small></div><textarea id="managerSummary" readonly></textarea></article>
         </div>
       </section>
 
-      <section class="card table-card">
-        <div class="section-title">
-          <h3>قائمة العملاء والفروع</h3>
-          <div class="table-actions">
-            <button id="exportCsvBtn" class="btn small">تصدير CSV</button>
-            <button onclick="window.print()" class="btn small">طباعة</button>
-            <button id="resetBtn" class="btn small danger-soft">رجوع للبيانات الأصلية</button>
-          </div>
-        </div>
+      <section id="customers" class="tab">
+        <div class="section-title"><h2>العملاء متقسمين بفروعهم</h2><p>كل فرع ظاهر بالاسم الكامل بدون اختصار.</p></div>
         <div id="customersList" class="customers-list"></div>
       </section>
-    </main>
 
-    <dialog id="editorDialog" class="modal">
-      <form id="customerForm" method="dialog">
-        <div class="modal-head">
-          <h3 id="modalTitle">إضافة بيانات</h3>
-          <button type="button" id="closeModal" class="icon-btn">×</button>
-        </div>
-        <input type="hidden" id="recordId" />
-        <div class="form-grid">
-          <label>اسم العميل<input id="client" required /></label>
-          <label>اسم الفرع<input id="branch" required /></label>
-          <label>شروط الدفع<input id="paymentTerms" /></label>
-          <label>الرقم الضريبي<input id="taxId" /></label>
-          <label>المدينة<input id="city" /></label>
-          <label>المحافظة<input id="state" /></label>
-          <label class="span-2">العنوان<input id="street" /></label>
-          <label>الهاتف<input id="phone" /></label>
-          <label>الموبايل<input id="mobile" /></label>
-          <label>الإيميل<input id="email" type="email" /></label>
-          <label>الموقع الإلكتروني<input id="website" /></label>
-          <label class="span-2">ملاحظات<textarea id="notes" rows="3"></textarea></label>
-        </div>
-        <div class="modal-actions">
-          <button type="submit" class="btn primary">حفظ</button>
-          <button type="button" id="cancelModal" class="btn">إلغاء</button>
-        </div>
-      </form>
-    </dialog>
+      <section id="branches" class="tab">
+        <div class="section-title"><h2>كل الفروع</h2><p>جدول سريع للتعديل والنسخ والحذف.</p></div>
+        <div class="table-wrap"><table id="branchesTable"><thead><tr><th>العميل</th><th>اسم الفرع كامل</th><th>المحافظة</th><th>المدينة</th><th>الرقم الضريبي</th><th>تواصل</th><th>إجراءات</th></tr></thead><tbody></tbody></table></div>
+      </section>
 
-    <dialog id="auditDialog" class="modal wide-modal">
-      <div class="modal-body">
-        <div class="modal-head">
-          <h3>سجل الحركات</h3>
-          <button type="button" id="closeAudit" class="icon-btn">×</button>
+      <section id="registry" class="tab">
+        <div class="section-title"><h2>السجل الضريبي للعملاء</h2><p>الأسماء والأرقام الضريبية من ملف السجل الضريبي المرفوع.</p></div>
+        <div id="registryList" class="registry-grid"></div>
+      </section>
+
+      <section id="quality" class="tab">
+        <div class="section-title"><h2>تحليل جودة البيانات</h2><p>اكتشاف الناقص والمتكرر تلقائيًا.</p></div>
+        <div class="grid three" id="qualityCards"></div>
+        <article class="panel"><div class="panel-head"><h2>السجلات التي تحتاج مراجعة</h2><small id="qualityCount"></small></div><div id="qualityList" class="issue-list"></div></article>
+      </section>
+
+      <section id="audit" class="tab">
+        <div class="grid two">
+          <article class="panel"><div class="panel-head"><h2>سجل الحركات</h2><button class="btn small" onclick="clearAudit()">مسح السجل</button></div><div id="auditList" class="log-list"></div></article>
+          <article class="panel"><div class="panel-head"><h2>سلة المحذوفات</h2><button class="btn small danger" onclick="emptyTrash()">تفريغ</button></div><div id="trashList" class="trash-list"></div></article>
         </div>
-        <div class="modal-actions top-actions">
-          <button id="exportAuditBtn" class="btn small">تصدير السجل</button>
-          <button id="clearAuditBtn" class="btn small danger-soft">مسح السجل</button>
-        </div>
-        <div id="auditList" class="log-list"></div>
+      </section>
+    </section>
+  </main>
+
+  <div id="editor" class="modal hidden">
+    <form class="modal-card" onsubmit="saveEditor(event)">
+      <div class="modal-head"><h2 id="editorTitle">إضافة / تعديل</h2><button type="button" onclick="closeEditor()">×</button></div>
+      <input type="hidden" id="editId">
+      <div class="form-grid">
+        <label>اسم العميل<input id="client" required></label>
+        <label>اسم الفرع كامل<input id="branch" required></label>
+        <label>الرقم الضريبي<input id="taxId"></label>
+        <label>شروط الدفع<input id="paymentTerms"></label>
+        <label>المحافظة<input id="state"></label>
+        <label>المدينة<input id="city"></label>
+        <label>العنوان<input id="street"></label>
+        <label>هاتف<input id="phone"></label>
+        <label>موبايل<input id="mobile"></label>
+        <label>إيميل<input id="email" type="email"></label>
+        <label>موقع / لوكيشن<input id="website"></label>
+        <label class="wide">ملاحظات<textarea id="notes"></textarea></label>
       </div>
-    </dialog>
-
-    <dialog id="trashDialog" class="modal wide-modal">
-      <div class="modal-body">
-        <div class="modal-head">
-          <h3>سلة المحذوفات</h3>
-          <button type="button" id="closeTrash" class="icon-btn">×</button>
-        </div>
-        <div id="trashList" class="trash-list"></div>
-      </div>
-    </dialog>
+      <div class="modal-actions"><button class="btn primary" type="submit">حفظ</button><button class="btn" type="button" onclick="closeEditor()">إلغاء</button></div>
+    </form>
   </div>
 
-  <div id="securityBlank" class="security-blank">تم إخفاء الشاشة مؤقتًا لحماية البيانات</div>
-  <div id="toast" class="toast"></div>
+  <div id="toast"></div>
   <script src="data.js"></script>
   <script src="script.js"></script>
 </body>
